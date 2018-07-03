@@ -42,9 +42,9 @@
 	
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\abstract{A smart transducer has been designed to measure the angular displacement of the roll angle of an electric vehicle. This provides important information to the control system of the vehicle, allowing for anti-roll measures to be initiated. The transducer uses an angular potentiometer along with signal conditioning and processing techniques for accurate measurement. The system has an operating bandwidth of $270~\mathrm{Hz}$, an estimated total error of $5.74~\%$ and cost of R~$679.95$. Future recommendations have been given such that further work may improve the design.}
+\abstract{}
 	
-\keywords{Roll Angle, Potentiometer, Anti-aliasing Filter, Wheatstone Bridge, Analog-to-Digital Conversion}
+\keywords{}
 	
 	
 \maketitle
@@ -53,9 +53,14 @@
 \section{INTRODUCTION}
 
 \section{BACKGROUND AND CONTEXTUALISATION}
+The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensor, MCU and power supply), the actual deployment of the sensor  wireless data communication and management (transfer and data presentation) 
 	\subsection{Hardware Choices}
 		\subsubsection{Microcontroller}
+			%Micro must: support comm module, have low operating current, have v low in sleep mode, must have digital IO to trigger and receive response from sensor (support multiple sensors to reduce costs per parking), easy to interface with, easy to flash, small size, relatively inexpensive.
+			%Arduino platform easy to use and well documented. Micros are inexpensive and versitile. For compact size the Nano and Pro Mini were considered. Nano - easy programming, more widely available, operating current draw of approximately 11mA. Pro-mini - less availability, difficult to program, operating current draw of ... mA. 
+			%ESP board - stuff.
 		\subsubsection{Sensor}
+			%Need a sensor to detect when a car is in a parking space. Must be: tolerant to ambient atmosphere (light, humidity, temp), accurate, can distinguish car from other objects passing in its way, work from a distance as to reduce the number of MCUs, able to work from ground level (no existing infrastructure to mount the devices to)
 		\subsubsection{Communication}
 		\subsubsection{Power Supply}
 	
@@ -114,16 +119,23 @@
 
 \section{PROJECT MANAGEMENT}
 	\subsection{Design Phase}
+		The design phase consists of a series of iterations of ideation, feasibility analysis, refinement and critical analysis. An important part of the design phase is research, most of which has been presented in the early sections of this report. %This phase should ideally be complete before the beginning of the project, yet realistically will continue throughout the implementation and testing phases. 
+		This phase involves the design of both the hardware and software components, to the point that all aspects of the project are known prior to implementation. Both the structure and conventions of the software are defined in this phase.
 	
 	\subsection{Implementation Phase}
+		The implementation phase will start once all hardware components have arrived and the design is finalised. Implementation will begin with the assembly of the hardware and programming the software that demonstrates parking availability via a easily accessible user interface.
 	
 	\subsection{Testing Phase}
+		
 	
 	\subsection{Demonstration Phase}
+		Demonstration is set to take place at Open Day. This phase involves creating posters as well as having the system deployed in the parking lot while the developed application demonstrates the system working in real time at the stand.
 	
 	\subsection{Documentation Phase}
+		The final report is to be written and submitted during this phase. Although documentation will take place throughout all of the previous stages, writing the report is the sole focus of this phase.
 	
 	\subsection{Presentation Phase}
+		The required final presentation is prepared in this phase. It is to be presented to the board of examiners once the final report has been submitted.
 	
 	\subsection{Projected Timeline}
 	
