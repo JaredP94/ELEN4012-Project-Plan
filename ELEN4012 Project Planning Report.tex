@@ -52,8 +52,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
+%\textbf{THINGS THIS DOC NEEDS}
+%\begin{itemize}
+%	\item Circuit diagram
+%	\item Ideas on how the housing will work
+%	\item How we plan to program the arduinos (algorithm of operation)
+%	\item How we plan to pass info between modules (algorithm of operation)
+%	\item How we plan to display the info in the UI - maybe just programming platform and thoughts
+%\end{itemize}
+
 \section{BACKGROUND AND CONTEXTUALISATION}
-The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensor, MCU and power supply), the actual deployment of the sensor  wireless data communication and management (transfer and data presentation) 
+The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensor, MCU and power supply), the actual deployment of the sensor, wireless data communication, data management and data presentation. 
 	\subsection{Hardware Choices}
 		\subsubsection{Microcontroller}
 			%Micro must: support comm module, have low operating current, have v low in sleep mode, must have digital IO to trigger and receive response from sensor (support multiple sensors to reduce costs per parking), easy to interface with, easy to flash, small size, relatively inexpensive.
@@ -62,7 +71,12 @@ The purpose of this section is to demonstrate techniques to identify and communi
 		\subsubsection{Sensor}
 			%Need a sensor to detect when a car is in a parking space. Must be: tolerant to ambient atmosphere (light, humidity, temp), accurate, can distinguish car from other objects passing in its way, work from a distance as to reduce the number of MCUs, able to work from ground level (no existing infrastructure to mount the devices to)
 		\subsubsection{Communication}
+			%must be done in such a way that the system is scalable, nb as this project needs to prove concept
+			%low power is good
+			%range extended by making a 'line of sight' between the modules - lower power consumption is achieved.
 		\subsubsection{Power Supply}
+			%Consider using a regulated sousrce such as a power bank, must be able to supply around 200 mA. Power - MCU, sensors, comm module. Power bank - cheap, readily available, charging and discharging circuitry problem presented when auto-off is enabled. Safety feature for when too little current is drawn. 
+			%Source must be sustainable, want unit to have a long life, batteries must last long / be recharged / both. 
 	
 	\subsection{Communication Technologies}
 		\subsubsection{Wi-Fi}
@@ -71,8 +85,17 @@ The purpose of this section is to demonstrate techniques to identify and communi
 		\subsubsection{RFM69}
 	
 	\subsection{Deployment Methodologies}
-		\subsubsection{Rigidity}
-		TBC
+		The parking system is to be deployed in the 3rd, 4th and Postgraduate Parking lot on West Campus at Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. Figure~\ref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\columnwidth]{deploymentSite.png}
+			\caption{Smart Parking deployment site (Google Maps Satellite View) and Module Placement Map}
+			\raggedright
+			\label{fig:deployment}
+		\end{figure}
+	
+		%\subsubsection{Rigidity}
 	
 	\subsection{Data Management}
 		\subsubsection{Network Mesh}
@@ -81,6 +104,7 @@ The purpose of this section is to demonstrate techniques to identify and communi
 				\item GSM
 				\item ISM
 				\item Wits Wi-Fi
+				% Maybe we should consider this with the ESP boards. We have the hardware and it might give us more of what we need than sigfox will 
 				\item 4G
 			\end{itemize}
 		\subsubsection{Data Platform}
@@ -90,6 +114,8 @@ The purpose of this section is to demonstrate techniques to identify and communi
 				\item Azure Web Services
 				\item Thingspeak
 				\item SigFox
+				% max 12 byte payload
+				% 6 uplinks/hour and 4 downlinks/day
 			\end{itemize}
 	
 	\subsection{Data Presentation}
@@ -102,8 +128,13 @@ The purpose of this section is to demonstrate techniques to identify and communi
 
 \section{PROJECT DESIGN}
 	\subsection{Hardware Choices}
+	For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two AA 12.V 3800mAh NiMh batteries in series, boosted to 5V using a small boost circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a transistor switch or other switch of some kind) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module. 
+	
+	The final component of each sensor node is the communication module, the NRF24L01+ Transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above.
 	
 	\subsection{Communication Technologies}
+	The NRF24L01+ Transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz z Industrial,
+	Scientific and Medical (ISM) band. Each transceiver is capable of using 125 different channels in this band. 
 	
 	\subsection{Deployment Methodologies}
 	
@@ -119,13 +150,15 @@ The purpose of this section is to demonstrate techniques to identify and communi
 
 \section{PROJECT MANAGEMENT}
 	\subsection{Design Phase}
-		The design phase consists of a series of iterations of ideation, feasibility analysis, refinement and critical analysis. An important part of the design phase is research, most of which has been presented in the early sections of this report. %This phase should ideally be complete before the beginning of the project, yet realistically will continue throughout the implementation and testing phases. 
-		This phase involves the design of both the hardware and software components, to the point that all aspects of the project are known prior to implementation. Both the structure and conventions of the software are defined in this phase.
+		The design phase consists of a series of iterations of ideation, feasibility analysis, refinement and critical analysis. An important part of the design phase is research, most of which has been presented in the early sections of this report. The final design should ideally be complete before the beginning of the project, yet realistically will continue throughout the implementation and testing phases. 
+		
+		Both the hardware and software components of the design must be considered here, to the point that all possible design implementations are known and the outcomes can be predicted with reasonable accuracy. 
 	
 	\subsection{Implementation Phase}
-		The implementation phase will start once all hardware components have arrived and the design is finalised. Implementation will begin with the assembly of the hardware and programming the software that demonstrates parking availability via a easily accessible user interface.
+		The implementation phase will start once all hardware components have arrived and the design is finalised. Implementation will begin with the assembly of the sensor nodes as well as their programming. Following this the communication within the mesh network will be set up and tested. Once all sensor data is successfully retrieved by the access point, the data will be transmitted, via the SigFox module, to the SigFox cloud. From here a user application will be developed which can retrieve the parking availability data using an available API and presented to the user via an intuitive user interface.
 	
 	\subsection{Testing Phase}
+		Testing will occur throughout the implementation phase. All individual modules, their collaboration, communications and accuracy will be verified as the system is put together. Once the finalised system is deployed into the parking lot, the system success rate will be tested using a statistical approach. Adjustments to improve the system accuracy will be made and iteratively, a low variance final product will be produced at the end of this phase.
 		
 	
 	\subsection{Demonstration Phase}
