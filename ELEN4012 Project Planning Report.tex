@@ -61,13 +61,16 @@
 %	\item How we plan to display the info in the UI - maybe just programming platform and thoughts
 %\end{itemize}
 
+% GOOD PAPER FOR GENERAL SHIT - https://www.researchgate.net/profile/Carlo_Guarnieri_Calo_Carducci/publication/282855975_Design_of_a_Low_Cost_Multipurpose_Wireless_Sensor_Network/links/579e07e308ae6a2882f53965.pdf
+
 \section{BACKGROUND AND CONTEXTUALISATION}
 The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensor, MCU and power supply), the actual deployment of the sensor, wireless data communication, data management and data presentation. 
-	\subsection{Hardware Choices}
+	\subsection{Hardware Choices} % not sure if this section is too necessary
 		\subsubsection{Microcontroller}
 			%Micro must: support comm module, have low operating current, have v low in sleep mode, must have digital IO to trigger and receive response from sensor (support multiple sensors to reduce costs per parking), easy to interface with, easy to flash, small size, relatively inexpensive.
 			%Arduino platform easy to use and well documented. Micros are inexpensive and versitile. For compact size the Nano and Pro Mini were considered. Nano - easy programming, more widely available, operating current draw of approximately 11mA. Pro-mini - less availability, difficult to program, operating current draw of ... mA. 
 			%ESP board - stuff.
+			% arduino has preexisting libraries for NRF24L01+ tranceiver as well as the HCSR04 Ultrasonic Sensor
 		\subsubsection{Sensor}
 			%Need a sensor to detect when a car is in a parking space. Must be: tolerant to ambient atmosphere (light, humidity, temp), accurate, can distinguish car from other objects passing in its way, work from a distance as to reduce the number of MCUs, able to work from ground level (no existing infrastructure to mount the devices to)
 		\subsubsection{Communication}
@@ -96,6 +99,9 @@ The purpose of this section is to demonstrate techniques to identify and communi
 		\end{figure}
 	
 		%\subsubsection{Rigidity}
+		It is obvious that the deployed hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive runoff, but also to provide the ultrasonic sensor with the best viewing angle and ensure that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor also provides challenges regarding waterproofing due to the nature of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
+		
+		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. 
 	
 	\subsection{Data Management}
 		\subsubsection{Network Mesh}
@@ -128,15 +134,21 @@ The purpose of this section is to demonstrate techniques to identify and communi
 
 \section{PROJECT DESIGN}
 	\subsection{Hardware Choices}
-	For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two AA 12.V 3800mAh NiMh batteries in series, boosted to 5V using a small boost circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a transistor switch or other switch of some kind) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module. 
-	
-	The final component of each sensor node is the communication module, the NRF24L01+ Transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above.
+	%https://www.electronics-tutorials.ws/transistor/tran_4.html - may be useful
+		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two AA 12.V 3800mAh NiMh batteries in series, boosted to 5V using a small boost circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a transistor switch or other switch of some kind) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module. 
+		
+		The final component of each sensor node is the communication module, the NRF24L01+ Transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above.
 	
 	\subsection{Communication Technologies}
-	The NRF24L01+ Transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz z Industrial,
-	Scientific and Medical (ISM) band. Each transceiver is capable of using 125 different channels in this band. 
+		The NRF24L01+ Transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz Industrial,
+		Scientific and Medical (ISM) band.  Each transceiver is capable of using 125 different channels in this band~\cite{howToMech_NRF24L01Tutorial}. The module can operate as a range of baud rates, where lower transfer rates increase its range. The expected range is high yet decreased again with decreasing power allocation. The modules operate best in open air. To achieve this the devices should be configured such that data is transferred through as few obstacles as possible. 
+		
+		%SigFox or alternative
 	
 	\subsection{Deployment Methodologies}
+		The sensor nodes will be deployed in a rigid encasing raised off the ground to average bumper height. The rigid encasing will most likely take form as an inexpensive yet rigid plastic encasing. This encasing will have the required windows for the ultrasonic sensors which will need to be recessed from the window. In tunrn all circuitry will be raised off the bottom of the encasing and drainage holes will be drilled on the underside to enable drainage if water is to enter via the windows.
+		
+		To raise the casing off the ground, a PVC stand will be assembled from electrical PVC conduits. The base will be held together by a 4 way PVC round box with four balance legs for stability. A vertical pole 
 	
 	\subsection{Data Management}
 
@@ -171,8 +183,10 @@ The purpose of this section is to demonstrate techniques to identify and communi
 		The required final presentation is prepared in this phase. It is to be presented to the board of examiners once the final report has been submitted.
 	
 	\subsection{Projected Timeline}
+	% look at project spec and flesh it out
 	
 	\subsection{Risk Assessment}
+	% look at project spec and flesh it out
 
 \section{CONCLUSION}
 
