@@ -66,16 +66,17 @@
 \section{BACKGROUND AND CONTEXTUALISATION}
 	The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensors, MCU, communication module and power supply), the actual deployment of the sensor module, wireless data communication, data management and data presentation. 
 
-	\subsection{Hardware Choices} % not sure if this section is too necessary
+	\subsection{Hardware Choices} 
+	% not sure if this section is too necessary - kinda just bullshitting, could be done concisely elsewhere
 	
 		\subsubsection{Microcontroller} $   $
 		
-			When choosing a microcontroller (MCU) for an IoT system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the module will interface with the sensors, and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the module (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
+			When choosing a microcontroller (MCU) for an IoT system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the module will interface with the sensors and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the module (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
 			
 			% arduino has preexisting libraries for NRF24L01+ tranceiver as well as the HCSR04 Ultrasonic Sensor
 			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing the the small size and reasonable price, the Arduino Nano V3 and Ardiono Pro Mini were considered. Arduino devices are well documented, with a wide array of libraries existing to support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation.
 
-			%ESP board - stuff.
+			%ESP board - stuff. NEEDS HELP
 			An alternative to Ardiono development boards is the ESP8266. This is a powerful development board with an on-board Wi-fi module, removing the need for additional communication hardware.
 			
 		\subsubsection{Sensor} $   $
@@ -85,13 +86,14 @@
 			This specification suggests the use of an ultrasonic sensor with special considerations for waterproofing. Ultrasonic sensors are distance measurement sensors and enable, through software configuration, the type of object being detected to be ascertained and as such the number of false positives to be reduced.		
 			
 		\subsubsection{Communication} $   $
-			%must be done in such a way that the system is scalable, nb as this project needs to prove concept
+			%must be done in such a way that the system is scalable, NB as this project needs to prove concept
 			%low power is good
 			%range extended by making a 'line of sight' between the modules - lower power consumption is achieved.
 			
 		\subsubsection{Power Supply} $   $
 			%Consider using a regulated sousrce such as a power bank, must be able to supply around 200 mA. Power - MCU, sensors, comm module. Power bank - cheap, readily available, charging and discharging circuitry problem presented when auto-off is enabled. Safety feature for when too little current is drawn. 
-			%Source must be sustainable, want unit to have a long life, batteries must last long / be recharged / both. 
+			%Source must be sustainable, want unit to have a long life, batteries must last long / be recharged / both.
+			%NiMh batteries are cheap, rechargable, small size 
 	
 	\subsection{Communication Technologies}
 		\subsubsection{Wi-Fi}
@@ -111,9 +113,17 @@
 		\end{figure}
 	
 		%\subsubsection{Rigidity}
-		It is obvious that the deployed hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive runoff, but also to provide the ultrasonic sensor with the best viewing angle and ensure that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor also provides challenges regarding waterproofing due to the nature of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
+		It is obvious that the deployed hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive  water runoff, but also to provide the ultrasonic sensor with the best viewing angle and ensure that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor also provides challenges regarding waterproofing due to the nature of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
 		
-		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. 
+		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. In an attempt to keep costs to a minimum, a PVC stand is proposed that will be rigid, stable and provide the right topology to detect vehicles at average bumper height. A top and isometric view of the proposed stand is provided in Figure~\ref{fig:stand}. As an alternative, a traffic cone could be used to house the system, if an inexpensive yet rigid option can be sourced.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\columnwidth]{topIsoStand.png}
+			\caption{Top (left) and Isometroc (right) view of the proposed PVC stand}
+			\raggedright
+			\label{fig:stand}
+		\end{figure}
 	
 	\subsection{Data Management}
 		\subsubsection{Network Mesh}
@@ -147,6 +157,8 @@
 \section{PROJECT DESIGN}
 	\subsection{Hardware Choices}
 	%https://www.electronics-tutorials.ws/transistor/tran_4.html - may be useful
+	
+		% ref to circuit disgram in this section
 		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two AA 12.V 3800mAh NiMh batteries in series, boosted to 5V using a small boost circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a transistor switch or other switch of some kind) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module. 
 		
 		The final component of each sensor node is the communication module, the NRF24L01+ Transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above.
@@ -155,7 +167,7 @@
 		The NRF24L01+ Transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz Industrial,
 		Scientific and Medical (ISM) band.  Each transceiver is capable of using 125 different channels in this band~\cite{howToMech_NRF24L01Tutorial}. The module can operate as a range of baud rates, where lower transfer rates increase its range. The expected range is high yet decreased again with decreasing power allocation. The modules operate best in open air. To achieve this the devices should be configured such that data is transferred through as few obstacles as possible. 
 		
-		%SigFox or alternative
+		%SigFox or alternative, maybe use the ESP at the main node to transfer via wits wifi if we can't get enough info through often enough with SigFox
 	
 	\subsection{Deployment Methodologies}
 		The sensor nodes will be deployed in a rigid encasing raised off the ground to average bumper height. The rigid encasing will most likely take form as an inexpensive yet rigid plastic encasing. This encasing will have the required windows for the ultrasonic sensors which will need to be recessed from the window. In tunrn all circuitry will be raised off the bottom of the encasing and drainage holes will be drilled on the underside to enable drainage if water is to enter via the windows.
@@ -198,7 +210,8 @@
 	
 	\subsection{Projected Timeline}
 	% look at project spec and flesh it out
-	Figure~\ref{fig:timeline} demonstrates the projected project timeline and the phase progression or the project.
+	% we should probably discuss the real serious timeline like what people will have in Gannt charts somewhere. Seems like a good idea
+	Figure~\ref{fig:timeline} demonstrates the projected project timeline and the phase progression for the project.
 	
 	\begin{figure}
 		\centering
