@@ -25,9 +25,9 @@
 
 \pagestyle{plain}
 
-\addtolength{\oddsidemargin}{-.15in}
-\addtolength{\evensidemargin}{-.15in}
-\addtolength{\textwidth}{0.5in}
+%\addtolength{\oddsidemargin}{-.15in}
+%\addtolength{\evensidemargin}{-.15in}
+%\addtolength{\textwidth}{0.5in}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -40,15 +40,12 @@
 			Witwatersrand, Private Bag 3, 2050, Johannesburg, South Africa}
 }
 	
-	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \abstract{}
 	
 \keywords{}
 	
-	
 \maketitle
-	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
@@ -56,6 +53,7 @@
 %\begin{itemize}
 %	\item Circuit diagram
 %	\item Ideas on how the housing will work
+% ALGORITHMS
 %	\item How we plan to program the arduinos (algorithm of operation)
 %	\item How we plan to pass info between modules (algorithm of operation)
 %	\item How we plan to display the info in the UI - maybe just programming platform and thoughts
@@ -63,21 +61,35 @@
 
 % GOOD PAPER FOR GENERAL SHIT - https://www.researchgate.net/profile/Carlo_Guarnieri_Calo_Carducci/publication/282855975_Design_of_a_Low_Cost_Multipurpose_Wireless_Sensor_Network/links/579e07e308ae6a2882f53965.pdf
 
+%Have a badass introduction. Mention what IoT is 
+
 \section{BACKGROUND AND CONTEXTUALISATION}
-The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensor, MCU and power supply), the actual deployment of the sensor, wireless data communication, data management and data presentation. 
+	The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensors, MCU, communication module and power supply), the actual deployment of the sensor module, wireless data communication, data management and data presentation. 
+
 	\subsection{Hardware Choices} % not sure if this section is too necessary
-		\subsubsection{Microcontroller}
-			%Micro must: support comm module, have low operating current, have v low in sleep mode, must have digital IO to trigger and receive response from sensor (support multiple sensors to reduce costs per parking), easy to interface with, easy to flash, small size, relatively inexpensive.
-			%Arduino platform easy to use and well documented. Micros are inexpensive and versitile. For compact size the Nano and Pro Mini were considered. Nano - easy programming, more widely available, operating current draw of approximately 11mA. Pro-mini - less availability, difficult to program, operating current draw of ... mA. 
-			%ESP board - stuff.
+	
+		\subsubsection{Microcontroller} $   $
+		
+			When choosing a microcontroller (MCU) for an IoT system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the module will interface with the sensors, and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the module (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
+			
 			% arduino has preexisting libraries for NRF24L01+ tranceiver as well as the HCSR04 Ultrasonic Sensor
-		\subsubsection{Sensor}
-			%Need a sensor to detect when a car is in a parking space. Must be: tolerant to ambient atmosphere (light, humidity, temp), accurate, can distinguish car from other objects passing in its way, work from a distance as to reduce the number of MCUs, able to work from ground level (no existing infrastructure to mount the devices to)
-		\subsubsection{Communication}
+			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing the the small size and reasonable price, the Arduino Nano V3 and Ardiono Pro Mini were considered. Arduino devices are well documented, with a wide array of libraries existing to support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation.
+
+			%ESP board - stuff.
+			An alternative to Ardiono development boards is the ESP8266. This is a powerful development board with an on-board Wi-fi module, removing the need for additional communication hardware.
+			
+		\subsubsection{Sensor} $   $
+			
+			The sensor chosen to detect vehicle presence in an open air parking lot should be tolerant of the environmental conditions in which it must operate. With large amounts of ambient light, varying light conditions, fluctuating temperatures and possible rain exposure the sensor should be raised from ground level, should not rely on light to detect vehicles and should not be significantly affected by changing temperatures. Considering also that the cost per unit should be as low as possible, connecting multiple sensors to a single MCU is a reasonable choice.
+			 
+			This specification suggests the use of an ultrasonic sensor with special considerations for waterproofing. Ultrasonic sensors are distance measurement sensors and enable, through software configuration, the type of object being detected to be ascertained and as such the number of false positives to be reduced.		
+			
+		\subsubsection{Communication} $   $
 			%must be done in such a way that the system is scalable, nb as this project needs to prove concept
 			%low power is good
 			%range extended by making a 'line of sight' between the modules - lower power consumption is achieved.
-		\subsubsection{Power Supply}
+			
+		\subsubsection{Power Supply} $   $
 			%Consider using a regulated sousrce such as a power bank, must be able to supply around 200 mA. Power - MCU, sensors, comm module. Power bank - cheap, readily available, charging and discharging circuitry problem presented when auto-off is enabled. Safety feature for when too little current is drawn. 
 			%Source must be sustainable, want unit to have a long life, batteries must last long / be recharged / both. 
 	
@@ -161,6 +173,9 @@ The purpose of this section is to demonstrate techniques to identify and communi
 
 
 \section{PROJECT MANAGEMENT}
+
+	Management of the project includes the management of work, time-management and scheduling, and the assessment and management of risks that are expected to be encountered throughout the project. The project can be divided into distinct phases in which specific workflow should take place.
+	
 	\subsection{Design Phase}
 		The design phase consists of a series of iterations of ideation, feasibility analysis, refinement and critical analysis. An important part of the design phase is research, most of which has been presented in the early sections of this report. The final design should ideally be complete before the beginning of the project, yet realistically will continue throughout the implementation and testing phases. 
 		
@@ -172,7 +187,6 @@ The purpose of this section is to demonstrate techniques to identify and communi
 	\subsection{Testing Phase}
 		Testing will occur throughout the implementation phase. All individual modules, their collaboration, communications and accuracy will be verified as the system is put together. Once the finalised system is deployed into the parking lot, the system success rate will be tested using a statistical approach. Adjustments to improve the system accuracy will be made and iteratively, a low variance final product will be produced at the end of this phase.
 		
-	
 	\subsection{Demonstration Phase}
 		Demonstration is set to take place at Open Day. This phase involves creating posters as well as having the system deployed in the parking lot while the developed application demonstrates the system working in real time at the stand.
 	
@@ -184,6 +198,16 @@ The purpose of this section is to demonstrate techniques to identify and communi
 	
 	\subsection{Projected Timeline}
 	% look at project spec and flesh it out
+	Figure~\ref{fig:timeline} demonstrates the projected project timeline and the phase progression or the project.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\columnwidth]{timeline.png}
+		\caption{Projected timeline of the project, including workflow (green) and deadlines (purple)}
+		\raggedright
+		\label{fig:timeline}
+	\end{figure}
+	
 	
 	\subsection{Risk Assessment}
 	% look at project spec and flesh it out
