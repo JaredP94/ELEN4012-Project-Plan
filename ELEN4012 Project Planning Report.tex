@@ -161,7 +161,15 @@
 		% ref to circuit disgram in this section
 		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two rechargeable AA 12 V 3800mAh nickel metal hydride (Ni-Mh) batteries in series, boosted to 5V using a small boost converter, more commonly known as a step-up converter, circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a MOSFET transistor as a switch due to it's low voltage drop) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module before a recharge is required. 
 		
-		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above.
+		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above. The proposed circuit design is illustrated in \cref{fig:node-circuit}.
+
+		\begin{figure*}
+			\centering
+			\includegraphics[scale=0.4]{media/node-circuit.png}
+			\caption{Circuit design of sensor node unit containing boost converter, MCU, ultrasonic sensors, and NRF24 transceiver}
+			\raggedright
+			\label{fig:node-circuit}
+		\end{figure*}
 	
 	\subsection{Communication Technologies}
 		The NRF24L01+ transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz Industrial, Scientific and Medical (ISM) band. Each transceiver is capable of using 125 different channels in this band~\cite{howToMech_NRF24L01Tutorial}. The module can operate at a range of baud rates, where lower transfer rates increase its range. The achievable range is high but can be decreased with a decrease in transmission amplification power. The modules operate best in open air. To achieve this the devices should be configured such that data is transferred through as few obstacles as possible. 
