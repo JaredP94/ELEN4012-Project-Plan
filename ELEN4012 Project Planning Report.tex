@@ -64,26 +64,26 @@
 %Have a badass introduction. Mention what IoT is 
 
 \section{BACKGROUND AND CONTEXTUALISATION}
-	The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensors, MCU, communication module and power supply), the actual deployment of the sensor module, wireless data communication, data management and data presentation. 
+	The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensors, microcontroller (MCU), communication module and power supply), the actual deployment of the sensor module, wireless data communication, data management and data presentation. 
 
 	\subsection{Hardware Choices} 
 	% not sure if this section is too necessary - kinda just bullshitting, could be done concisely elsewhere
 	
 		\subsubsection{Microcontroller} $   $
 		
-			When choosing a microcontroller (MCU) for an IoT system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the module will interface with the sensors and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the module (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
+			When choosing an MCU for an internet of things (IoT) system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the module will interface with the sensors and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the module (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
 			
 			% arduino has preexisting libraries for NRF24L01+ tranceiver as well as the HCSR04 Ultrasonic Sensor
-			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing the the small size and reasonable price, the Arduino Nano V3 and Ardiono Pro Mini were considered. Arduino devices are well documented, with a wide array of libraries existing to support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation.
+			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing to their small size and reasonable price, the Arduino Nano V3 and Arduino Pro Mini were considered. Arduino devices are well documented, with a wide array of libraries, provide through extensive community support, existing to support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation due to an inefficient power regulator integrated circuit (IC) in the Pro Mini.
 
 			%ESP board - stuff. NEEDS HELP
-			An alternative to Ardiono development boards is the ESP8266. This is a powerful development board with an on-board Wi-fi module, removing the need for additional communication hardware.
+			An alternative to Arduino development boards are the ESP8266 based MCUs. A range of development boards based on the aforementioned microprocessor are commercially available. These boards designed to cater for low consumption requirements, such as the bare-bones ESP8266 MCU, through to intensive processing requirements, such as the dual core ESP32 MCU. The development boards come pre-built with a Wi-Fi module, among other communication modules, which negates the requirements of additional communication hardware.
 			
 		\subsubsection{Sensor} $   $
 			
-			The sensor chosen to detect vehicle presence in an open air parking lot should be tolerant of the environmental conditions in which it must operate. With large amounts of ambient light, varying light conditions, fluctuating temperatures and possible rain exposure the sensor should be raised from ground level, should not rely on light to detect vehicles and should not be significantly affected by changing temperatures. Considering also that the cost per unit should be as low as possible, connecting multiple sensors to a single MCU is a reasonable choice.
+			The sensor chosen to detect vehicle presence in an open air parking lot should be tolerant of the environmental conditions in which it must operate. With large amounts of ambient light, varying light conditions, fluctuating temperatures and possible rain exposure the sensor should be raised from ground level, should not rely on light to detect vehicles and should not be significantly affected by changing temperatures. Considering also that the cost per unit should be as low as possible, connecting multiple sensors to a single MCU is a reasonable design choice.
 			 
-			This specification suggests the use of an ultrasonic sensor with special considerations for waterproofing. Ultrasonic sensors are distance measurement sensors and enable, through software configuration, the type of object being detected to be ascertained and as such the number of false positives to be reduced.		
+			This specification suggests the use of an ultrasonic sensor with special considerations for waterproofing. Ultrasonic sensors are accurate distance measurement sensors and enable, through software configuration, the type of object being detected to be ascertained and as such the number of false positives to be reduced.		
 			
 		\subsubsection{Communication} $   $
 			%must be done in such a way that the system is scalable, NB as this project needs to prove concept
@@ -102,7 +102,7 @@
 		\subsubsection{RFM69}
 	
 	\subsection{Deployment Methodologies}
-		The parking system is to be deployed in the 3rd, 4th and Postgraduate Parking lot on West Campus at Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. Figure~\ref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
+		The parking system is to be deployed in the 3rd, 4th and Postgraduate Parking lot near the Chamber of Mines building on the West Campus of Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. Figure~\ref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
 		
 		\begin{figure}
 			\centering
@@ -113,14 +113,14 @@
 		\end{figure}
 	
 		%\subsubsection{Rigidity}
-		It is obvious that the deployed hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive  water runoff, but also to provide the ultrasonic sensor with the best viewing angle and ensure that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor also provides challenges regarding waterproofing due to the nature of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
+		It is obvious that the deployed hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive water runoff, but also to provide the ultrasonic sensors with the best viewing angle and ensure that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor also provides challenges regarding waterproofing due to the nature of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
 		
 		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. In an attempt to keep costs to a minimum, a PVC stand is proposed that will be rigid, stable and provide the right topology to detect vehicles at average bumper height. A top and isometric view of the proposed stand is provided in Figure~\ref{fig:stand}. As an alternative, a traffic cone could be used to house the system, if an inexpensive yet rigid option can be sourced.
 		
 		\begin{figure}
 			\centering
 			\includegraphics[width=1\columnwidth]{media/topIsoStand.png}
-			\caption{Top (left) and Isometroc (right) view of the proposed PVC stand}
+			\caption{Top (left) and Isometric (right) view of the proposed PVC stand}
 			\raggedright
 			\label{fig:stand}
 		\end{figure}
@@ -159,20 +159,19 @@
 	%https://www.electronics-tutorials.ws/transistor/tran_4.html - may be useful
 	
 		% ref to circuit disgram in this section
-		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two AA 12.V 3800mAh NiMh batteries in series, boosted to 5V using a small boost circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a transistor switch or other switch of some kind) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module. 
+		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two rechargeable AA 12 V 3800mAh nickel metal hydride (Ni-Mh) batteries in series, boosted to 5V using a small boost converter, more commonly known as a step-up converter, circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a MOSFET transistor as a switch due to it's low voltage drop) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module before a recharge is required. 
 		
-		The final component of each sensor node is the communication module, the NRF24L01+ Transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above.
+		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above.
 	
 	\subsection{Communication Technologies}
-		The NRF24L01+ Transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz Industrial,
-		Scientific and Medical (ISM) band.  Each transceiver is capable of using 125 different channels in this band~\cite{howToMech_NRF24L01Tutorial}. The module can operate as a range of baud rates, where lower transfer rates increase its range. The expected range is high yet decreased again with decreasing power allocation. The modules operate best in open air. To achieve this the devices should be configured such that data is transferred through as few obstacles as possible. 
+		The NRF24L01+ transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz Industrial, Scientific and Medical (ISM) band. Each transceiver is capable of using 125 different channels in this band~\cite{howToMech_NRF24L01Tutorial}. The module can operate at a range of baud rates, where lower transfer rates increase its range. The achievable range is high but can be decreased with a decrease in transmission amplification power. The modules operate best in open air. To achieve this the devices should be configured such that data is transferred through as few obstacles as possible. 
 		
 		%SigFox or alternative, maybe use the ESP at the main node to transfer via wits wifi if we can't get enough info through often enough with SigFox
 	
 	\subsection{Deployment Methodologies}
-		The sensor nodes will be deployed in a rigid encasing raised off the ground to average bumper height. The rigid encasing will most likely take form as an inexpensive yet rigid plastic encasing. This encasing will have the required windows for the ultrasonic sensors which will need to be recessed from the window. In tunrn all circuitry will be raised off the bottom of the encasing and drainage holes will be drilled on the underside to enable drainage if water is to enter via the windows.
+		The sensor nodes will be deployed in a rigid encasing raised off the ground to average bumper height. The rigid encasing will most likely take form as an inexpensive yet rigid plastic encasing. This encasing will have the required windows for the ultrasonic sensors which will need to be recessed from the window. In turn all circuitry will be raised off the bottom of the encasing and drainage holes will be drilled on the underside to enable drainage if water is to enter via the windows.
 		
-		To raise the casing off the ground, a PVC stand will be assembled from electrical PVC conduits. The base will be held together by a 4 way PVC round box with four balance legs for stability. A vertical pole 
+		To raise the casing off the ground, a PVC stand will be assembled from electrical PVC conduits. The base will be held together by a 4 way PVC round box with four balance legs for stability. A vertical pole will be erected from the center of the stand on which the encased sensor node will be attached.
 	
 	\subsection{Data Management}
 
