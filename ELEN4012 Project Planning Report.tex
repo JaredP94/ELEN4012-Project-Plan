@@ -86,6 +86,10 @@
 			This specification suggests the use of an ultrasonic sensor with special considerations for waterproofing. Ultrasonic sensors are accurate distance measurement sensors and enable, through software configuration, the type of object being detected to be ascertained and as such the number of false positives to be reduced.		
 			
 		\subsubsection{Communication} $   $
+
+			The method of communication between the sensor nodes is a key design consideration as many options are available, each with their own benefits and trade-offs. A range of communication modules exist which are compatible with most common MCUs. These include Wi-Fi, RF, Bluetooth and NFC communication standards. The chosen mode of communication should be robust and reliable as to prevent data loss during transmission. Furthermore, the communication modules should be able to endure a range of outdoor weather conditions as well as obstructions which may exist between two modules.
+
+			The solution should be designed to cater for a system that can be easily and efficiently scaled. This requires the abundant availability of channels within the chosen communication scheme to prevent bandwidth throttling within the sensor network. It is pivotal that an energy efficient communication scheme is utilised in that the power consumption of the communication modules provides an ideal transmission range. Power consumption is proportional to transmission range and a communication module with variable power modes would be ideal for a scalable and power efficient solution.
 			%must be done in such a way that the system is scalable, NB as this project needs to prove concept
 			%low power is good
 			%range extended by making a 'line of sight' between the modules - lower power consumption is achieved.
