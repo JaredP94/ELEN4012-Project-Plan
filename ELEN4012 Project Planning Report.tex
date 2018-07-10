@@ -106,9 +106,15 @@
 	
 	\subsection{Communication Technologies}
 		\subsubsection{Wi-Fi}
+			Wi-Fi is well known and easily accessible communication scheme in the IoT market. It's range will vary on a range of factors which include the specific IEEE 802.11 protocol which the module is utilising, the strength of the module's transmitter, and radio interference from the surrounding environment. Low energy consumption modules require between 14~dBm (25~mW) to 19~dBm (79~mW) for typical transmission with a data rate of 72~mbps. At maximum transmission power in an open environment, a maximum transmission distance of approximately 100~m is obtained. The ESP8266 Wi-Fi module allows four simultaneous client connections with unidirectional communication.
+
 		\subsubsection{Bluetooth}
-		\subsubsection{NRF24}
-		\subsubsection{RFM69}
+			Bluetooth is another well known communication scheme which is available within the IoT market. It utilises the IEEE 802.15.1 and there are multiple variants which offer differing combinations of low energy consumption, high data rates and long transmission distances. Low energy consumption modules require a maximum of 3~dBm (2mW) for a typical transmission that can transmit a at a maximum range of approximately 150~m with a data rate of 0.23~mbps. The long range variant offers a maximum transmission distance of approximately 450~m with a data rate of 0.23~mbps with a transmission power requirement of 8~dBm (6~mW). The number of simultaneous connections allowed varies per device, with the maximum amount being seven, with unidirectional communication.
+
+		\subsubsection{Radio Frequency}
+			A range of RF-based transceivers exist which utilise different ISM bands. The NRF24 refers to a protocol utilised by Nordic Semiconductors in which they utilise the 2.4~GHz ISM band for RF communication. Nordic has produced a range of NRF24 based transceivers which have become prominent within the IoT market due to their low cost and adjustable power consumption. The nRF24L01+ transceiver, for example, offers a maximum transmission distance of approximately 100~m with a data rate of 0.25~mbps with a transmission power requirement of 0~dBm (1~mW). Furthermore, the data rate can be configured up to 2~mbps and transmission power modes can be selected ranging down to -18~dBm (16~$\mu$W). These transceivers facilitate 125 simultaneous connections with bidirectional communication.
+			
+			An alternative is the RFM69 transceiver, which offers similar operating characteristics to the NRF24-based transceivers but operates in the 433/868/915~Mhz ISM bands and supports up to 255 simultaneous connections. Naturally, the RFM69 transceiver exhibits marginally higher power requirements to sustain these capabilities and is higher priced than the NRF24-based transceivers.
 	
 	\subsection{Deployment Methodologies}
 		The parking system is to be deployed in the 3rd, 4th and Postgraduate Parking lot near the Chamber of Mines building on the West Campus of Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. Figure~\ref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
