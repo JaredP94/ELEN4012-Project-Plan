@@ -81,12 +81,12 @@
 %%%%% \input IEEE\@ptsize.sty\relax  %%%% FONT DEFINITION BELOW (NO FILE READ)
 
 %% change sizes and margins
-\topmargin      -13mm
+\topmargin      -10mm
 \marginparwidth   0.0mm
 \marginparsep     0.0mm
 \oddsidemargin   -8mm
 \evensidemargin  -8mm
-\textheight     260.0mm
+\textheight     255.0mm
 \textwidth      170.0mm
 \columnsep        6.0mm
 \parindent        0.0mm
