@@ -145,7 +145,11 @@
 		\end{figure}
 	
 	\subsection{Data Management}
-		\subsubsection{Network Mesh}
+		\subsubsection{Mesh Network}
+			The concept of a mesh network relates to a network topology in which infrastructure nodes, being the sensor nodes, are connected in a range of configurations to allow for the efficient routing of data between the nodes within the network. In this specific scenario, the goal relates to implementing a network topology whereby all sensor data is successfully transmitted to the gateway node within the network. Furthermore, the mesh network should be designed in a way that facilitates the ability to enable self-configuration of the nodes within the topology. This allows for dynamic distribution of workloads, which is important in the scenario where a node may happen to fail. This results in improved fault-tolerance and minimised system maintenance. The major considerations of the topology design in the context of this project are node transmission distance and node power consumption. Two topologies offer varying combinations of these factors.
+			
+			\cref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a high total number of transmissions per round of data gathering. \cref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per of data gathering.
+			
 			\begin{figure}
 				\centering
 				\includegraphics[width=1\columnwidth]{media/hop-mesh.png}
