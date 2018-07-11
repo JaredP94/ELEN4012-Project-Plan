@@ -146,10 +146,19 @@
 	
 	\subsection{Data Management}
 		\subsubsection{Network Mesh}
+		\begin{figure}
+			\centering
+			\includegraphics[width=1\columnwidth]{media/hop-mesh.png}
+			\vspace{1em}
+			\caption{Node network mesh which utilised single node hop communication for short range transmission}
+			\raggedright
+			\label{fig:stand}
+		\end{figure}
 		\subsubsection{Data Upload:}
 			The Industrial, Scientific and Medical (ISM) band refers to a group of radio bands or parts of the radio spectrum that are unlicensed and internationally reserved for the use of RF energy intended for scientific, medical and industrial requirements. ISM bands are generally open frequency bands, which vary according to different regions and permits. Therefore any communication operating within the ISM band should be tolerant of interference from other ISM equipment. There has been a surge in low-power, short-range communication platforms utilising the ISM band such as bluetooth, Wi-Fi, NFC and mobile networks~\cite{ism}. Thus a large variety of communication methods are available offering a range of power consumptions, transmission ranges and data rates. The following communication methods are considered in uploading sensor data to the utilised data platform:
 			
 			\begin{itemize}
+				
 				\item GSM/GPRS:
 				Global System for Mobile (GSM) communication, also commonly referred to as 2G, due to being a second-generation cellular network provides support for voice calls, Simple Message System (SMS) and data communication via General Packet Radio Service (GPRS). GPRS is a packet switching technology which can provide idealised data rates between 0.056~Mbps to 0.114~Mbps~\cite{gprs}. To utilise GPRS for data communication, an Access Point Name (APN) and username/passward pair is required from a network operator~\cite{gprs}.\\
 				
@@ -163,7 +172,6 @@
 				\item 4G:
 				This is the fourth generation of broadband cellular network technology, succeeding 3G. This generation places emphasis on data rates. This is demonstrated in modules such as the Quectel EC25 LTE category 4 module which offers download and upload data rates of up to 150~mbps and 50~mbps respectively, requiring a supply of just 5~V~\cite{ec25}. This caters for solutions where large amounts of data needs to be transferred continuously.
 
-			
 			\end{itemize}
 
 		\subsubsection{Data Platform}
