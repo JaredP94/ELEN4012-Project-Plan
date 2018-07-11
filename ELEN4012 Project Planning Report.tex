@@ -20,8 +20,12 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 \usepackage{cleveref}
 \usepackage{color,soul}
+\usepackage{float}
 
 \pagestyle{plain}
 
@@ -142,14 +146,26 @@
 	
 	\subsection{Data Management}
 		\subsubsection{Network Mesh}
-		\subsubsection{Data Upload}
+		\subsubsection{Data Upload:}
+			The Industrial, Scientific and Medical (ISM) band refers to a group of radio bands or parts of the radio spectrum that are unlicensed and internationally reserved for the use of RF energy intended for scientific, medical and industrial requirements. ISM bands are generally open frequency bands, which vary according to different regions and permits. Therefore any communication operating within the ISM band should be tolerant of interference from other ISM equipment. There has been a surge in low-power, short-range communication platforms utilising the ISM band such as bluetooth, Wi-Fi, NFC and mobile networks~\cite{ism}. Thus a large variety of communication methods are available offering a range of power consumptions, transmission ranges and data rates. The following communication methods are considered in uploading sensor data to the utilised data platform:
+			
 			\begin{itemize}
-				\item GSM
-				\item ISM
-				\item Wits Wi-Fi
-				% Maybe we should consider this with the ESP boards. We have the hardware and it might give us more of what we need than sigfox will 
-				\item 4G
+				\item GSM/GPRS:
+				Global System for Mobile (GSM) communication, also commonly referred to as 2G, due to being a second-generation cellular network provides support for voice calls, Simple Message System (SMS) and data communication via General Packet Radio Service (GPRS). GPRS is a packet switching technology which can provide idealised data rates between 0.056~Mbps to 0.114~Mbps~\cite{gprs}. To utilise GPRS for data communication, an Access Point Name (APN) and username/passward pair is required from a network operator~\cite{gprs}.\\
+				
+				GSM modules are commercially available which are compatible with most major development boards. These modules require a Subscriber Identification Module (SIM) card which is used to to register on a mobile operator network to facilitate the required communication services. Such an example is the common Quectel M10 module which is a quad-band GSM/GPRS modem requiring a supply of just 3.4~V~\cite{m10}.\\
+
+				\item Wits Wi-Fi:
+				The university of the Witwatersrand (Wits) offers a high speed network, offering local and international data rates of 10~Gbps and 589~Mbps respectively~\cite{wits-speed}. Due to the constant need for connection on the main campus, the network is extremely reliable with minimal down-time.\\
+				
+				The use of a development board such as the ESP12-E which features a built in Wi-Fi module could easily be used as a gateway node for sensor network which could periodically collect all respective sensor data and thereafter connect to the Wi-Fi network provided by Wits to upload the sensor data to the utilised data platform~\cite{esp12e}.\\
+			
+				\item 4G:
+				This is the fourth generation of broadband cellular network technology, succeeding 3G. This generation places emphasis on data rates. This is demonstrated in modules such as the Quectel EC25 LTE category 4 module which offers download and upload data rates of up to 150~mbps and 50~mbps respectively, requiring a supply of just 5~V~\cite{ec25}. This caters for solutions where large amounts of data needs to be transferred continuously.
+
+			
 			\end{itemize}
+
 		\subsubsection{Data Platform}
 			\begin{itemize}
 				\item Amazon Web Services
@@ -178,9 +194,9 @@
 		
 		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above. The proposed circuit design is illustrated in \cref{fig:node-circuit}.
 
-		\begin{figure*}
+		\begin{figure*}[h]
 			\centering
-			\includegraphics[scale=0.4]{media/node-circuit.png}
+			\includegraphics[width=\textwidth]{media/node-circuit.png}
 			\caption{Circuit design of sensor node unit containing boost converter, MCU, ultrasonic sensors, and NRF24 transceiver}
 			\raggedright
 			\label{fig:node-circuit}
