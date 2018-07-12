@@ -102,6 +102,7 @@
 			%Consider using a regulated sousrce such as a power bank, must be able to supply around 200 mA. Power - MCU, sensors, comm module. Power bank - cheap, readily available, charging and discharging circuitry problem presented when auto-off is enabled. Safety feature for when too little current is drawn. 
 			%Source must be sustainable, want unit to have a long life, batteries must last long / be recharged / both.
 			%NiMh batteries are cheap, rechargable, small size 
+			
 			When considering that the sensor network should be portable and self-sufficient, the power supply modules should be able to power the network independently. The sensor network requires supply modules which are well regulated and offer large capacity. Additionally, the modules should be renewable and affordable. Rechargeable batteries cater for this exact purpose.
 
 			A range of rechargeable batteries exist which include lithium ion (Li-ion), lithium polymer (Li-Po) and nickel metal hydride (Ni-Mh) options. Li-ion batteries generally offer high capacity in 3.7 V multiples but are known to be quite dangerous when exposed to high temperature ranges~\cite{li-ion}. Li-Po batteries offer a large range of capacities in 3.7 V multiples but the price increases exponentially as capacity increases~\cite{li-po}. Ni-Mh batteries are versatile in offering a large range of capacities as well as a range of voltages~\cite{ni-mh}.
@@ -109,13 +110,16 @@
 			The chosen supply will then need to be regulated to ensure stable operation of the sensor nodes as any fluctuation in supply may damage or prevent the sensor nodes from correctly functioning. To ensure the supplied voltage is at an expected level, the use of a boost converter could be utilised to step up the default supply voltage of the batteries.
 	
 	\subsection{Communication Technologies}
-		\subsubsection{Wi-Fi}
+		\subsubsection{Wi-Fi} $   $
+		
 			This communication scheme is well known and easily accessible for use within the IoT market. It's range will vary on a range of factors which include the specific IEEE 802.11 protocol which the module is utilising, the strength of the module's transmitter, and radio interference from the surrounding environment~\cite{802.11}. Low energy consumption modules require between 14~dBm (25~mW) to 19~dBm (79~mW) for typical transmission with a data rate of 72~Mbps~\cite{esp12e}. At maximum transmission power in an open environment, a maximum transmission distance of approximately 100~m is obtained~\cite{esp12e}. The ESP8266 Wi-Fi module allows four simultaneous client connections with unidirectional communication~\cite{esp12e}.
 
-		\subsubsection{Bluetooth}
+		\subsubsection{Bluetooth} $   $
+		
 			This communication scheme is another well known scheme which is available within the IoT market. It utilises the IEEE 802.15.1 and there are multiple variants which offer differing combinations of low energy consumption, high data rates and long transmission distances~\cite{802.15.2}. Low energy consumption modules require a maximum of 3~dBm (2mW) for a typical transmission that can transmit a at a maximum range of approximately 150~m with a data rate of 0.23~Mbps~\cite{BLE112}. The long range variant offers a maximum transmission distance of approximately 450~m with a data rate of 0.23~Mbps with a transmission power requirement of 8~dBm (6~mW)~\cite{BLE112LR}. The number of simultaneous connections allowed varies per device, with the maximum amount being seven, with unidirectional communication~\cite{bluetooth-users}.
 
-		\subsubsection{Radio Frequency}
+		\subsubsection{Radio Frequency} $   $
+		
 			A range of RF-based transceivers exist which utilise different ISM bands. The NRF24 refers to a protocol utilised by Nordic Semiconductors in which they utilise the 2.4~GHz ISM band for RF communication~\cite{nrf24}. Nordic has produced a range of NRF24 based transceivers which have become prominent within the IoT market due to their low cost and adjustable power consumption. The nRF24L01+ transceiver, for example, offers a maximum transmission distance of approximately 100~m with a data rate of 0.25~Mbps with a transmission power requirement of 0~dBm (1~mW)~\cite{nrf24}. Furthermore, the data rate can be configured up to 2~Mbps and transmission power modes can be selected ranging down to -18~dBm (16~$\mu$W)~\cite{nrf24}. These transceivers facilitate 125 simultaneous connections with bidirectional communication~\cite{nrf24}.
 			
 			An alternative is the RFM69 transceiver, which offers similar operating characteristics to the NRF24-based transceivers but operates in the 433/868/915~Mhz ISM bands and supports up to 255 simultaneous connections~\cite{rfm69}. Naturally, the RFM69 transceiver exhibits marginally higher power requirements to sustain these capabilities and is higher priced than the NRF24-based transceivers~\cite{rfm69}.
@@ -145,7 +149,8 @@
 		\end{figure}
 	
 	\subsection{Data Management}
-		\subsubsection{Mesh Network}
+		\subsubsection{Mesh Network} $   $
+		
 			The concept of a mesh network relates to a network topology in which infrastructure nodes, being the sensor nodes, are connected in a range of configurations to allow for the efficient routing of data between the nodes within the network~\cite{mesh}. In this specific scenario, the goal relates to implementing a network topology whereby all sensor data is successfully transmitted to the gateway node within the network. Furthermore, the mesh network should be designed in a way that facilitates the ability to enable self-configuration of the nodes within the topology. This allows for dynamic distribution of workloads, which is important in the scenario where a node may happen to fail~\cite{mesh}. This results in improved fault-tolerance and minimised system maintenance. The major considerations of the topology design in the context of this project are node transmission distance and node power consumption. Two topologies offer varying combinations of these factors.
 			
 			\cref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a large total number of transmissions per round of data gathering. \cref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per round of data gathering.
@@ -168,7 +173,8 @@
 				\label{fig:segment}
 			\end{figure}
 	
-		\subsubsection{Data Upload:}
+		\subsubsection{Data Upload} $   $
+		
 			The Industrial, Scientific and Medical (ISM) band refers to a group of radio bands or parts of the radio spectrum that are unlicensed and internationally reserved for the use of RF energy intended for scientific, medical and industrial requirements. ISM bands are generally open frequency bands, which vary according to different regions and permits. Therefore any communication operating within the ISM band should be tolerant of interference from other ISM equipment. There has been a surge in low-power, short-range communication platforms utilising the ISM band such as bluetooth, Wi-Fi, NFC and mobile networks~\cite{ism}. Thus a large variety of communication methods are available offering a range of power consumptions, transmission ranges and data rates. The following communication methods are considered in uploading sensor data to the utilised data platform:
 			
 			\begin{itemize}
@@ -213,10 +219,12 @@
 			\end{itemize}
 	
 	\subsection{Data Presentation}
-		\subsubsection{API:}
+		\subsubsection{API} $   $
+		
 			Parking bay data needs to be accessible from the data platform which been configured to receive and process the sensor data of the network. This can be securely and easily implemented through the use of an Application Programming Interface (API). Each data platform offers a preconfigured API to access the processed cloud data through HTTP requests. These requests can be sent from any internet application, which is capable of executing the requests, to obtain the processed data and parse it as required to present information on parking bay availability to the user.
 		
-		\subsubsection{User Application:}
+		\subsubsection{User Application} $   $
+		
 			Users require an easily accessible network-based application to access the processed data provided by the data platform. This can be provided through a range of web or mobile applications. The adoption of a web application would prove convenient for a developer due to the vast range of web application frameworks that provide out-of-box API integration and a large range of capabilities for creating a well designed user interface/user experience (UI/UX). The adoption of a mobile application provides fewer design components to be customised for the user however, it provides portability which would allow for a user to easily check their application for an empty parking bay as they are about to enter the parking lot.
 			
 
