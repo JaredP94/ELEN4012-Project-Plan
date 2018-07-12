@@ -148,13 +148,13 @@
 		\subsubsection{Mesh Network}
 			The concept of a mesh network relates to a network topology in which infrastructure nodes, being the sensor nodes, are connected in a range of configurations to allow for the efficient routing of data between the nodes within the network~\cite{mesh}. In this specific scenario, the goal relates to implementing a network topology whereby all sensor data is successfully transmitted to the gateway node within the network. Furthermore, the mesh network should be designed in a way that facilitates the ability to enable self-configuration of the nodes within the topology. This allows for dynamic distribution of workloads, which is important in the scenario where a node may happen to fail~\cite{mesh}. This results in improved fault-tolerance and minimised system maintenance. The major considerations of the topology design in the context of this project are node transmission distance and node power consumption. Two topologies offer varying combinations of these factors.
 			
-			\cref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a high total number of transmissions per round of data gathering. \cref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per of data gathering.
+			\cref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a large total number of transmissions per round of data gathering. \cref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per round of data gathering.
 			
 			\begin{figure}
 				\centering
 				\includegraphics[width=1\columnwidth]{media/hop-mesh.png}
 				\vspace{1em}
-				\caption{Node network mesh which utilises single node hop communication for short range transmission}
+				\caption{Node mesh network which utilises single node hop communication for short range transmission}
 				\raggedright
 				\label{fig:single}
 			\end{figure}
@@ -163,7 +163,7 @@
 				\centering
 				\includegraphics[width=1\columnwidth]{media/segment-mesh.png}
 				\vspace{1em}
-				\caption{Node network mesh which utilises multiple node hop communication in a segmented mesh configuration for longer range transmission with fewer hops}
+				\caption{Node mesh network which utilises multiple node hop communication in a segmented mesh configuration for longer range transmission with fewer hops}
 				\raggedright
 				\label{fig:segment}
 			\end{figure}
@@ -193,7 +193,7 @@
 				\item AWS Greengrass:
 				Amazon Web Services (AWS) offers Greengrass which is software that facilitates the running of local compute, messaging, data caching, synchronisation, and machine learning capabilities for connected IoT devices in a secure manner. It provides useful off-line capabilities by still allowing devices to run AWS Lambda functions, synchronise deive data, and communicate with other devices~\cite{greengrass}. Greengrass is network optimised, ensuring the cost of transmitting data to the cloud is kept to a minimal~\cite{greengrass}.\\
 				
-				Greengrass extends AWS to IoT devices, allowing them to act on generated data, whilst providing the cloud platform for management, analytics, and storage of the device data. A range of programming languages and programming models which facilitate the ability to create and test device software in the cloud, followed by deploying it to connected devices~\cite{greengrass}. Data filtering can be effected so that only key information is extracted and transmitted to the cloud. Greengrass continuously authenticates and encrypts all device data throughout the connection process by utilising the Message Queuing Telemetry Transport (MQTT) protocol~\cite{greengrass}. A maximum of 200 devices are supported per group and unlimited per an account with a maximum message size of 128~KB per device transmission to the cloud~\cite{greengrass}.\\
+				Greengrass extends AWS to IoT devices, allowing them to act on generated data, whilst providing the cloud platform for management, analytics, and storage of the device data. A range of programming languages and programming models which facilitate the ability to create and test device software in the cloud, followed by deploying it to connected devices~\cite{greengrass}. Data filtering can be effected so that only key information is extracted and transmitted to the cloud. Greengrass continuously authenticates and encrypts all device data throughout the connection process by utilising the Message Queuing Telemetry Transport (MQTT) protocol~\cite{greengrass}. A maximum of 200 devices are supported per group and unlimited per an account with a maximum message size of 128~KB per device transmission to the cloud~\cite{aws-quota}.\\
 				
 				\item Google Cloud Platform
 				
