@@ -29,9 +29,9 @@
 
 \pagestyle{plain}
 
-%\addtolength{\oddsidemargin}{-.15in}
-%\addtolength{\evensidemargin}{-.15in}
-%\addtolength{\textwidth}{0.5in}
+\addtolength{\oddsidemargin}{-.15in}
+\addtolength{\evensidemargin}{-.15in}
+\addtolength{\textwidth}{0.5in}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -68,7 +68,7 @@
 %Have a badass introduction. Mention what IoT is 
 
 \section{BACKGROUND AND CONTEXTUALISATION}
-	The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing via a sensor module (with sensors, microcontroller (MCU), communication module and power supply), the actual deployment of the sensor module, wireless data communication, data management and data presentation. 
+	The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing using a sensor module, the deployment of the sensor module, wireless data communication, data management and data presentation. For a minimum viable product, each sensor module must consist of a sensor, microcontroller (MCU), communication module and power supply.
 
 	\subsection{Hardware Choices} 
 	% not sure if this section is too necessary - kinda just bullshitting, could be done concisely elsewhere
@@ -77,23 +77,27 @@
 		
 			When choosing an MCU for an internet of things (IoT) system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the module will interface with the sensors and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the module (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
 			
-			% arduino has preexisting libraries for NRF24L01+ tranceiver as well as the HCSR04 Ultrasonic Sensor
+			% THIS IS AWFUL
 			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing to their small size and reasonable price, the Arduino Nano V3 and Arduino Pro Mini were considered. Arduino devices are well documented, with a wide array of libraries, provide through extensive community support, existing to support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation due to an inefficient power regulator integrated circuit (IC) in the Pro Mini.
 
 			%ESP board - stuff. NEEDS HELP
-			An alternative to Arduino development boards are the ESP8266 based MCUs. A range of development boards based on the aforementioned microprocessor are commercially available. These boards designed to cater for low consumption requirements, such as the bare-bones ESP8266 MCU, through to intensive processing requirements, such as the dual core ESP32 MCU. The development boards come pre-built with a Wi-Fi module, among other communication modules, which negates the requirements of additional communication hardware~\cite{esp12e}.
+			An alternative to the Arduino platform is the ESP8266-based development board range. %A range of development boards based on the aforementioned microprocessor are commercially available. 
+			These boards are designed to cater for low consumption requirements, such as the bare-bones ESP8266 MCU, through to intensive processing requirements, such as the dual core ESP32 MCU. The development boards come pre-built with a Wi-Fi module, among other communication modules, which negates the requirements of additional communication hardware~\cite{esp12e}.
 			
 		\subsubsection{Sensor} $   $
 			
-			The sensor chosen to detect vehicle presence in an open air parking lot should be tolerant of the environmental conditions in which it must operate. With large amounts of ambient light, varying light conditions, fluctuating temperatures and possible rain exposure the sensor should be raised from ground level, should not rely on light to detect vehicles and should not be significantly affected by changing temperatures. Considering also that the cost per unit should be as low as possible, connecting multiple sensors to a single MCU is a reasonable design choice.
+			The sensor chosen to detect vehicle presence in an open air parking lot should be tolerant of the environmental conditions in which it must operate. The sensor module will be exposed to large amounts of ambient light, varying light conditions, fluctuating temperatures and rain. As such, the chosen sensor should not rely on light to detect vehicles, should not be significantly affected by changing temperatures and should be weather-proofed. Considering also that the cost per sensor module should be as low as possible, connecting multiple sensors to a single MCU is a reasonable design choice.
 			 
-			This specification suggests the use of an ultrasonic sensor with special considerations for waterproofing. Ultrasonic sensors are accurate distance measurement sensors and enable, through software configuration, the type of object being detected to be ascertained and as such the number of false positives to be reduced.		
+			%% HELP
+			%The above specification suggests a distance measurement sensor, such an ultrasonic sensor, with special considerations for waterproofing. Ultrasonic sensors are accurate distance measurement sensors and enable, through software configuration, the type of object being detected to be ascertained and as such the number of false positives to be reduced.
+			
+			This specification suggests an accurate distance measurement sensor with a reasonable range. An ultrasonic sensor is preferred for this application (see \secref{hardware_choices} for details).
 			
 		\subsubsection{Communication} $   $
 
 			The method of communication between the sensor nodes is a key design consideration as many options are available, each with their own benefits and trade-offs. A range of communication modules exist which are compatible with most common MCUs. These include Wi-Fi, RF, Bluetooth and NFC communication standards. The chosen mode of communication should be robust and reliable as to prevent data loss during transmission. Furthermore, the communication modules should be able to endure a range of outdoor weather conditions as well as obstructions which may exist between two modules.
 
-			The solution should be designed to cater for a system that can be easily and efficiently scaled. This requires the abundant availability of channels within the chosen communication scheme to prevent bandwidth throttling within the sensor network. It is pivotal that an energy efficient communication scheme is utilised in that the power consumption of the communication modules provides an ideal transmission range. Power consumption is proportional to transmission range and a communication module with variable power modes would be ideal for a scalable and power efficient solution. Enabling line of sight between nodes to be achieved, where possible, would require less power as transmission does not need to occur trough any obstacles.
+			The solution should be designed to cater for a system that can be easily and efficiently scaled. This requires the abundant availability of channels within the chosen communication scheme to prevent bandwidth throttling within the sensor network. It is pivotal that an energy efficient communication scheme is utilised in that the power consumption of the communication modules provides an ideal transmission range. Power consumption is proportional to transmission range, and a communication module with variable power modes would be ideal for a scalable and power efficient solution. Enabling line of sight between nodes to be achieved, where possible, would require less power as transmission does not need to occur through any obstacles.
 			%must be done in such a way that the system is scalable, NB as this project needs to prove concept
 			%low power is good
 			%range extended by making a 'line of sight' between the modules - lower power consumption is achieved.
@@ -112,11 +116,11 @@
 	\subsection{Communication Technologies}
 		\subsubsection{Wi-Fi} $   $
 		
-			This communication scheme is well known and easily accessible for use within the IoT market. It's range will vary on a range of factors which include the specific IEEE 802.11 protocol which the module is utilising, the strength of the module's transmitter, and radio interference from the surrounding environment~\cite{802.11}. Low energy consumption modules require between 14~dBm (25~mW) to 19~dBm (79~mW) for typical transmission with a data rate of 72~Mbps~\cite{esp12e}. At maximum transmission power in an open environment, a maximum transmission distance of approximately 100~m is obtained~\cite{esp12e}. The ESP8266 Wi-Fi module allows four simultaneous client connections with unidirectional communication~\cite{esp12e}.
+			This communication scheme is well known and easily accessible for use within the IoT market. It's range will vary depending on a range of factors, including the specific IEEE 802.11 protocol which the module is utilising, the strength of the module's transmitter, and radio interference from the surrounding environment~\cite{802.11}. Low energy consumption modules require between 14~dBm (25~mW) to 19~dBm (79~mW) for typical transmission with a data rate of 72~Mbps~\cite{esp12e}. At maximum transmission power in an open environment, a maximum transmission distance of approximately 100~m is obtained~\cite{esp12e}. The ESP8266 Wi-Fi module allows four simultaneous client connections with unidirectional communication~\cite{esp12e}.
 
 		\subsubsection{Bluetooth} $   $
 		
-			This communication scheme is another well known scheme which is available within the IoT market. It utilises the IEEE 802.15.1 and there are multiple variants which offer differing combinations of low energy consumption, high data rates and long transmission distances~\cite{802.15.2}. Low energy consumption modules require a maximum of 3~dBm (2mW) for a typical transmission that can transmit a at a maximum range of approximately 150~m with a data rate of 0.23~Mbps~\cite{BLE112}. The long range variant offers a maximum transmission distance of approximately 450~m with a data rate of 0.23~Mbps with a transmission power requirement of 8~dBm (6~mW)~\cite{BLE112LR}. The number of simultaneous connections allowed varies per device, with the maximum amount being seven, with unidirectional communication~\cite{bluetooth-users}.
+			Bluetooth is another well known communication scheme which is available within the IoT market. Bluetooth utilises the IEEE 802.15.1 standard. Multiple variants exist which offer differing combinations of low energy consumption, high data rates and long transmission distances~\cite{802.15.2}. Low energy consumption modules require a maximum of 3~dBm (2mW) for a typical transmission that can transmit a at a maximum range of approximately 150~m with a data rate of 0.23~Mbps~\cite{BLE112}. The long range variant offers a maximum transmission distance of approximately 450~m with a data rate of 0.23~Mbps with a transmission power requirement of 8~dBm (6~mW)~\cite{BLE112LR}. The number of simultaneous connections allowed varies per device, with the maximum amount being seven, with unidirectional communication~\cite{bluetooth-users}.
 
 		\subsubsection{Radio Frequency} $   $
 		
@@ -125,7 +129,7 @@
 			An alternative is the RFM69 transceiver, which offers similar operating characteristics to the NRF24-based transceivers but operates in the 433/868/915~Mhz ISM bands and supports up to 255 simultaneous connections~\cite{rfm69}. Naturally, the RFM69 transceiver exhibits marginally higher power requirements to sustain these capabilities and is higher priced than the NRF24-based transceivers~\cite{rfm69}.
 	
 	\subsection{Deployment Methodologies}
-		The parking system is to be deployed in the 3rd, 4th and Postgraduate Parking lot near the Chamber of Mines building on the West Campus of Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. Figure~\ref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
+		The parking system is to be deployed in the '3rd, 4th and Postgraduate' parking lot near the Chamber of Mines building on the West Campus of Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. \figref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
 		
 		\begin{figure}
 			\centering
@@ -136,9 +140,9 @@
 		\end{figure}
 	
 		%\subsubsection{Rigidity}
-		It is obvious that the deployed hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive water runoff, but also to provide the ultrasonic sensors with the best viewing angle and ensure that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor also provides challenges regarding waterproofing due to the nature of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
+		When deployed, the hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive water runoff, but also to provide the ultrasonic sensors with the best viewing angle and ensure that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor provides challenges regarding waterproofing, as a result of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
 		
-		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. In an attempt to keep costs to a minimum, a PVC stand is proposed that will be rigid, stable and provide the right topology to detect vehicles at average bumper height. A top and isometric view of the proposed stand is provided in Figure~\ref{fig:stand}. As an alternative, a traffic cone could be used to house the system, if an inexpensive yet rigid option can be sourced.
+		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. In an attempt to keep costs to a minimum, a PVC stand is proposed that will be rigid, stable and provide the right topology to detect vehicles at average bumper height. A top and isometric view of the proposed stand is provided in \figref{fig:stand}. As an alternative, a traffic cone could be used to house the system, if an inexpensive yet rigid option can be sourced.
 		
 		\begin{figure}
 			\centering
@@ -153,7 +157,7 @@
 		
 			The concept of a mesh network relates to a network topology in which infrastructure nodes, being the sensor nodes, are connected in a range of configurations to allow for the efficient routing of data between the nodes within the network~\cite{mesh}. In this specific scenario, the goal relates to implementing a network topology whereby all sensor data is successfully transmitted to the gateway node within the network. Furthermore, the mesh network should be designed in a way that facilitates the ability to enable self-configuration of the nodes within the topology. This allows for dynamic distribution of workloads, which is important in the scenario where a node may happen to fail~\cite{mesh}. This results in improved fault-tolerance and minimised system maintenance. The major considerations of the topology design in the context of this project are node transmission distance and node power consumption. Two topologies offer varying combinations of these factors.
 			
-			\cref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a large total number of transmissions per round of data gathering. \cref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per round of data gathering.
+			\figref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a large total number of transmissions per round of data gathering. \figref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per round of data gathering.
 			
 			\begin{figure}
 				\centering
@@ -185,7 +189,7 @@
 				GSM modules are commercially available which are compatible with most major development boards. These modules require a Subscriber Identification Module (SIM) which is an integrated circuit with the purpose of securely storing the International Mobile Subscriber Identity (IMSI) number with its corresponding authentication key~\cite{imsi}. These are used to identify and authenticate subscribers on the mobile network. Such an example of a GSM module is the common Quectel M10 module which is a quad-band GSM/GPRS modem requiring a supply of just 3.4~V~\cite{m10}.\\
 
 				\item Wits Wi-Fi:
-				The university of the Witwatersrand (Wits) offers a high speed network, offering local and international data rates of 10~Gbps and 589~Mbps respectively~\cite{wits-speed}. Due to the constant need for connection on the main campus, the network is extremely reliable with minimal down-time.\\
+				The University of the Witwatersrand (Wits) offers a high speed network, offering local and international data rates of 10~Gbps and 589~Mbps respectively~\cite{wits-speed}. Due to the constant need for connection on the main campus, the network is extremely reliable with minimal down-time.\\
 				
 				The use of a development board such as the ESP12-E which features a built in Wi-Fi module could easily be used as a gateway node for sensor network which could periodically collect all respective sensor data and thereafter connect to the Wi-Fi network provided by Wits to upload the sensor data to the utilised data platform~\cite{esp12e}.\\
 			
@@ -229,13 +233,13 @@
 			
 
 \section{PROJECT DESIGN}
-	\subsection{Hardware Choices}
+	\subsection{Hardware Choices} \label{hardware_choices}
 	%https://www.electronics-tutorials.ws/transistor/tran_4.html - may be useful
 	
 		% ref to circuit disgram in this section
-		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two rechargeable AA 12 V 3800mAh Ni-Mh batteries in series, boosted to 5V using a small boost converter, more commonly known as a step-up converter, circuit module. The 5V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a MOSFET transistor as a switch due to it's low voltage drop) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module before a recharge is required. 
+		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two rechargeable AA 1,2~V 3800~mAh Ni-Mh batteries in series, boosted to 5~V using a small boost converter, more commonly known as a step-up converter, circuit module. The 5~V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a MOSFET transistor as a switch due to it's low voltage drop) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module before a recharge is required. 
 		
-		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above. The proposed circuit design is illustrated in \cref{fig:node-circuit}.
+		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3~V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above. The proposed circuit design is illustrated in \figref{fig:node-circuit}.
 
 		\begin{figure*}[h]
 			\centering
