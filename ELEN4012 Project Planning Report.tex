@@ -53,8 +53,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
-% GOOD PAPER FOR GENERAL SHIT - https://www.researchgate.net/profile/Carlo_Guarnieri_Calo_Carducci/publication/282855975_Design_of_a_Low_Cost_Multipurpose_Wireless_Sensor_Network/links/579e07e308ae6a2882f53965.pdf
-
 The digital age has seen a momentous increase in the interest of digitizing all aspects of life. The Internet of Things (IoT) is a large range of systems, described by the International Telecommunication Union (ITU) as "a global infrastructure for the Information Society", which makes use of information and communication technologies to interconnect things~\cite{wortmann_internet_2015}. An IoT-based parking monitoring system aims to allow parking availability tracking in real time via a mobile application, building towards transforming the University of the Witwatersrand into a Smart Campus. Contained within the remainder of this report is a project plan to design, construct and test a Smart Parking system.
 
 \vspace{1em}
@@ -223,7 +221,7 @@ The digital age has seen a momentous increase in the interest of digitizing all 
 	\subsection{Hardware Choices} \label{hardware_choices}
 	%https://www.electronics-tutorials.ws/transistor/tran_4.html - may be useful
 	
-		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two rechargeable AA 1,2~V 3800~mAh \mbox{Ni-Mh} batteries in series, boosted to 5~V using a small boost (step-up) converter circuit module. The 5~V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. 
+		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two rechargeable AA 1,2~V 3800~mAh ~\ \mbox{Ni-Mh} batteries in series, boosted to 5~V using a small boost (step-up) converter circuit module. The 5~V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. 
 		
 		The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a MOSFET transistor as a switch due to it's low voltage drop) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module before a recharge is required.
 		
