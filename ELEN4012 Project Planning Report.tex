@@ -262,6 +262,7 @@
 	\subsection{Data Management}
 
 	\subsubsection{Data Platform}
+		ThingSpeak will be utilised as the data platform service. This platform is favourable due to its product offerings under a free tier range. Sensor data uploads can be accommodated every 15 seconds which is more than sufficient for the system requirements. A single data upload channel is available which is sufficient due to the system making use of a single gateway module. The maximum message size of 3~KB is sufficient to store all parking bay information. The estimated message size will be 72~B under the assumption that each parking bay is represented by a boolean data type. Furthermore, the platform provides native support for the Arduino platform which is to be used as the gateway module.
 
 	\subsection{Data Presentation}
 		The process of translating raw sensor data into useful information occurs within the data presentation element of the designed solution. This will be served through a mobile application which is to be developed on the Android platform. The application will provide users, being students who wish to search for available parking spots, with a graphical user interface (GUI) in which an aerial view of the surveyed parking bays will be presented. An available parking by will be highlighted in green, whilst an occupied parking bay will be highlighted in red.
