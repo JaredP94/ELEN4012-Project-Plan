@@ -46,6 +46,7 @@
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \abstract{This report outlines a project plan to implement an Internet of Things (IoT) based smart parking system to alert drivers of available parking bays. The project plan uses Arduino nano and ESP-8266 development boards, ultrasonic sensors, Radio Frequency (RF) communication, the ThingSpeak cloud IoT platform and the Android framework in an attempt to give the project the best chance of success. Testing methodologies have been outlined to quantify the successful operation of the system. Research into IoT hardware, communication technologies, deployment methodologies, data management and data presentation is conducted and analysed. By considering all possible design configurations and flaws that could be encountered, an appropriate and efficient project design is proposed. The project, from design to demonstration, should take 6 weeks.}
+\abstract{The purpose of this document is to outline the project plan to implement an Internet of Things (IoT) based smart parking system to alert car drivers of available parking bays. The project plan uses boost converters, Adruino nano development boards, ESP-8266 development boards, ultrasonic sensors, Radio Frequency (RF) communication, ThingSpeak cloud IoT platform and Android framework in an attempt to give the project the best chance of succeeding. Testing methodologies have been outlined to quantify the system's operation under which it would be considered successful. Background and contextualisation is provided and analysed with emphasis on the hardware, communication techologies, deployment methodlogies, data management and data presentation components. This analysis allowed for an appropriate and efficient project design to be proposed by considering all possible design components and possible flaws that could be encountered. The project, from design to demonstration, should take 6 weeks.}
 	
 \keywords{Android, Arduino, ESP-8266, Internet of Things, RESTful API, ThingSpeak, Wireless Sensor Network}
 	
@@ -55,8 +56,7 @@
 
 % GOOD PAPER FOR GENERAL SHIT - https://www.researchgate.net/profile/Carlo_Guarnieri_Calo_Carducci/publication/282855975_Design_of_a_Low_Cost_Multipurpose_Wireless_Sensor_Network/links/579e07e308ae6a2882f53965.pdf
 
-
-The digital age has seen a massive increase in the interest in digitizing all aspects of life. The Internet of Things (IoT) is large range of systems, described by the International Telecommunication Union (ITU) as "a global infrastructure for the Information Society", which make use of information and communication technologies to interconnect things~\cite{wortmann_internet_2015}. An IoT-based parking monitoring system aims to allow parking availability tracking in real time via a mobile application, building towards transforming the University of the Witwatersrand into a  Smart Campus. Contained within the remainder of this report is a project plan to design, construct and test a Smart Parking system.
+The digital age has seen a momentous increase in the interest of digitizing all aspects of life. The Internet of Things (IoT) is a large range of systems, described by the International Telecommunication Union (ITU) as "a global infrastructure for the Information Society", which makes use of information and communication technologies to interconnect things~\cite{wortmann_internet_2015}. An IoT-based parking monitoring system aims to allow parking availability tracking in real time via a mobile application, building towards transforming the University of the Witwatersrand into a Smart Campus. Contained within the remainder of this report is a project plan to design, construct and test a Smart Parking system.
 
 \vspace{1em}
 \section{BACKGROUND AND CONTEXTUALISATION}
@@ -183,7 +183,7 @@ The digital age has seen a massive increase in the interest in digitizing all as
 				The use of a development board such as the ESP12-E, which features a built in Wi-Fi module, could easily be used as a gateway node for the sensor network. This module could periodically collect all respective sensor data and thereafter connect to the Wi-Fi network provided by Wits to upload the sensor data to the chosen data platform~\cite{esp12e}.
 			
 				\textbf{4G/LTE:}~~
-				This is the fourth generation of broadband cellular network technology, succeeding 3G. This generation places emphasis on data rates. This is demonstrated in modules such as the Quectel EC25 Long-Term Evolution (LTE) category 4 module which offers download and upload data rates of up to 150~mbps and 50~mbps respectively, requiring a supply of  5~V~\cite{ec25}. This caters for solutions where large amounts of data needs to be transferred continuously.
+				This is the fourth generation of broadband cellular network technology, succeeding 3G. This generation places emphasis on data rates. This is demonstrated in modules such as the Quectel EC25 Long-Term Evolution (LTE) category 4 module which offers download and upload data rates of up to 150~mbps and 50~mbps respectively, requiring a supply of 5~V~\cite{ec25}. This caters for solutions where large amounts of data needs to be transferred continuously.
 
 		\subsubsection{Data Platform} $   $
 		
@@ -209,7 +209,7 @@ The digital age has seen a massive increase in the interest in digitizing all as
 				A SigFox Software Defined Radio (SDR) module is required to interface with the network and can be obtained as development board shields which are compatible with platforms such as Arduino~\cite{sigfox-tech}. The maximum upload and download data rate ranges between 100~bps and 600~bps and incurs a maximum message size limit of 12~B which can be uploaded a maximum of six times per hour~\cite{sigfox-tech}.
 	
 	\subsection{Data Presentation}
-		Parking bay availability is communicated to the user through data presentation.  The components of this process are described as in the sections that follow.
+		Parking bay availability is communicated to the user through data presentation. The components of this process are described as in the sections that follow.
 		
 		\subsubsection{API} $   $
 		
@@ -286,14 +286,14 @@ The digital age has seen a massive increase in the interest in digitizing all as
 		\begin{itemize}
 			\item \textbf{Reliable data transfer:} Sensor data should be successfully transmitted between nodes. Additionally, the received data should be error free or errors should be detected and corrected.
 			\vspace{1em}
-			\item  \textbf{Concurrent connections:} Nodes should be able to successfully receive data from multiple transmitting nodes.
+			\item \textbf{Concurrent connections:} Nodes should be able to successfully receive data from multiple transmitting nodes.
 		\end{itemize}
 	
 	\subsection{Data Management}
 		\begin{itemize}
 			\item \textbf{Mesh network operation:} Nodes should transmit data towards the gateway node. Transmission will be made to a non-gateway node if the gateway node is more than the maximum allowed number of hops away. Received data should be aggregated and transmitted towards the gateway node until the destination is reached.
 			\vspace{1em}
-			\item  \textbf{Stable data upload:} The gateway node is able to connect to the Wits Wi-Fi network and periodically transmit the aggregated data of the sensor network to data platform.
+			\item \textbf{Stable data upload:} The gateway node is able to connect to the Wits Wi-Fi network and periodically transmit the aggregated data of the sensor network to data platform.
 			\vspace{1em}
 			\item \textbf{Data processing:} Data received from the sensor network is processed in a timely manner and made available through a RESTful API.
 		\end{itemize}
