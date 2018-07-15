@@ -217,6 +217,9 @@
 			\end{itemize}
 	
 	\subsection{Data Presentation}
+		
+		
+	
 		\subsubsection{API} $   $
 		
 			Parking bay data needs to be accessible from the data platform which been configured to receive and process the sensor data of the network. This can be securely and easily implemented through the use of an Application Programming Interface (API). Each data platform offers a preconfigured API to access the processed cloud data through HTTP requests. These requests can be sent from any internet application, which is capable of executing the requests, to obtain the processed data and parse it as required to present information on parking bay availability to the user.
@@ -256,7 +259,7 @@
 	\subsection{Data Management}
 
 	\subsubsection{Data Platform}
-		ThingSpeak will be utilised as the data platform service. This platform is favourable due to its product offerings under a free tier range. Sensor data uploads can be accommodated every 15 seconds which is more than sufficient for the system requirements. A single data upload channel is available which is sufficient due to the system making use of a single gateway module. The maximum message size of 3~KB is sufficient to store all parking bay information. The estimated message size will be 72~B under the assumption that each parking bay is represented by a boolean data type. Furthermore, the platform provides native support for the Arduino platform which is to be used as the gateway module.
+		ThingSpeak will be utilised as the data platform service. This platform is favourable due to its product offerings under a free tier range. Sensor data uploads can be accommodated every 15 seconds which is more than sufficient for the system requirements. A single data upload channel is available which is sufficient due to the system making use of a single gateway module. The maximum message size of 3~KB is sufficient to store all parking bay information. The estimated message size will be 72~B under the assumption that each parking bay is represented by a boolean data type. Furthermore, the platform provides native support for the ESP-8266 platform which is to be used as the gateway module.
 
 	\subsection{Data Presentation}
 		The process of translating raw sensor data into useful information occurs within the data presentation element of the designed solution. This will be served through a mobile application which is to be developed on the Android platform. The application will provide users, being students who wish to search for available parking spots, with a graphical user interface (GUI) in which an aerial view of the surveyed parking bays will be presented. An available parking by will be highlighted in green, whilst an occupied parking bay will be highlighted in red.
