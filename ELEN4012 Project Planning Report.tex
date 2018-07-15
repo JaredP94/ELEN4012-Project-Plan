@@ -263,8 +263,41 @@
 		The required sensor data will be obtained from the utilised data platform in the form of a RESTful API which will allow the application to obtain the sensor data through HTTP requests. The updated sensor data will be periodically requested by the application to provide regular GUI updates of available parking bays.
 	
 \section{PROJECT TESTING}
-	\subsection{Testing Methodologies}
+	A number of system tests are required to validate the design and successful operation of a the IoT parking system. These tests can be categorised and are described in the sections that follow.
 
+	\subsection{Hardware}
+		\begin{itemize}
+			\item \textbf{Minimal power consumption:} The physical system should be evaluated to ensure that power consumption is kept to a minimum. This can be achieved through the use of power efficient hardware in conjunction with optimised software configuration.
+			\vspace{1em}
+			\item \textbf{System accuracy:} Sensors in the network should provide reliable and accurate readings. The MCUs should process this data to ensure false-positives are mitigated.
+			\vspace{1em}
+			\item \textbf{Robustness:} The deployed system is able to successfully withstand exposure to a range of environmental conditions. Additionally, the deployed nodes should be resilient to human interference in the form of car bumping or physical tampering.
+		\end{itemize}
+	
+	\subsection{Communication}
+		\begin{itemize}
+			\item \textbf{Reliable data transfer:} Sensor data should be successfully transmitted between nodes. Additionally, the received data should be error free or errors should be detected and corrected.
+			\vspace{1em}
+			\item  \textbf{Concurrent connections:} Nodes should be able to successfully receive data from multiple transmitting nodes.
+		\end{itemize}
+	
+	\subsection{Data Management}
+		\begin{itemize}
+			\item \textbf{Mesh network operation:} Nodes should transmit data towards the gateway node. Transmission will be made to a non-gateway node if the gateway node is more than the maximum allowed hops away. Received data should be aggregated and transmitted towards the gateway node until the destination is reached.
+			\vspace{1em}
+			\item  \textbf{Stable data upload:} The gateway node is able to connect to the Wits Wi-Fi network and transmit the aggregated data of the sensor network to data platform periodically.
+			\vspace{1em}
+			\item \textbf{Data processing:} Data received from the sensor network is processed in a timely manner and made available through a RESTful API.
+		\end{itemize}
+	
+	\subsection{Data Presentation}
+		\begin{itemize}
+			\item \textbf{Obtainable data:} Processed data can be requested and retrieved from the data platform via the offered API.
+			\vspace{1em}
+			\item \textbf{Intuitive GUI:} Application users are able to easily navigate the GUI and understand the presented data to locate available parking bays.
+			\vspace{1em}
+			\item \textbf{Application updates:} Data updates are periodically requested by the application. Additionally, users can opt to manually request a data update.
+		\end{itemize}
 
 \section{PROJECT MANAGEMENT}
 
