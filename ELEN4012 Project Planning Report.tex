@@ -145,6 +145,9 @@
 		\end{figure}
 	
 	\subsection{Data Management}
+	
+		The optimised collection, processing and presentation of sensor data is required to provide the relevant parking bay information to users. These components are described as in the sections that follow.
+		
 		\subsubsection{Mesh Network} $   $
 		
 			The concept of a mesh network relates to a network topology in which infrastructure nodes, being the sensor nodes, are connected in a range of configurations to allow for the efficient routing of data between the nodes within the network~\cite{mesh}. In this specific scenario, the goal relates to implementing a network topology whereby all sensor data is successfully transmitted to the gateway node within the network. Furthermore, the mesh network should be designed in a way that facilitates the ability to enable self-configuration of the nodes within the topology. This allows for dynamic distribution of workloads, which is important in the scenario where a node may happen to fail~\cite{mesh}. This results in improved fault-tolerance and minimised system maintenance. The major considerations of the topology design in the context of this project are node transmission distance and node power consumption. Two topologies offer varying combinations of these factors.
@@ -164,7 +167,7 @@
 				\centering
 				\includegraphics[width=1\columnwidth]{media/segment-mesh.png}
 				\vspace{1em}
-				\caption{Node mesh network which utilises multiple node hop communication in a segmented mesh configuration for longer range transmission with fewer hops}
+				\caption{Node mesh network which utilises node-skip communication in a segmented mesh configuration for longer range transmission with fewer hops}
 				\raggedright
 				\label{fig:segment}
 			\end{figure}
@@ -249,10 +252,19 @@
 		To raise the casing off the ground, a PVC stand will be assembled from electrical PVC conduits. The base will be held together by a 4 way PVC round box with four balance legs for stability. A vertical pole will be erected from the center of the stand on which the encased sensor module will be attached.
 	
 	\subsection{Data Management}
-
-		\subsubsection{Data Platform}
+		The design choices made in relation to optimised collection, processing and presentation of sensor data are described as in the sections that follow.
+	
+	\subsubsection{Mesh Network} $   $
+	
+		The chosen mesh network implements the node-skip topology to reduce the number of node hops required when transmitting sensor data, thus reducing the power consumption of the system. Additional transmitting power will be required for longer distance transmission but is accounted for by optimising the maximum number of nodes which can be skipped.
+	
+	\subsubsection{Data Upload} $   $
+	
+		The Wits Wi-Fi network has been chosen as the preferred data upload communication scheme. This is due to the infrastructure being readily available and being highly stable with regards to up-time. The network can be connected to by the gateway node which will be an ESP-12E module with an integrated Wi-Fi module.
 		
-			ThingSpeak will be utilised as the data platform service. This platform is favourable due to its product offerings under a free tier range. Sensor data uploads can be accommodated every 15 seconds which is more than sufficient for the system requirements. A single data upload channel is available which is sufficient due to the system making use of a single gateway module. The maximum message size of 3~KB is sufficient to store all parking bay information. The estimated message size will be 72~B under the assumption that each parking bay is represented by a boolean data type. Furthermore, the platform provides native support for the ESP-8266 platform which is to be used as the gateway module.
+	\subsubsection{Data Platform} $   $
+	
+		ThingSpeak will be utilised as the data platform service. This platform is favourable due to its product offerings under a free tier range. Sensor data uploads can be accommodated every 15 seconds which is more than sufficient for the system requirements. A single data upload channel is available which is sufficient due to the system making use of a single gateway node. The maximum message size of 3~KB is sufficient to store all parking bay information. The estimated message size will be 72~B under the assumption that each parking bay is represented by a boolean data type. Furthermore, the platform provides native support for the ESP-8266 platform which is to be used as the gateway node.
 
 	\subsection{Data Presentation}
 	
