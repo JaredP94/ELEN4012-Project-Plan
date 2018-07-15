@@ -66,9 +66,9 @@
 	
 		\subsubsection{Microcontroller} $   $
 		
-			When choosing an MCU for an internet of things (IoT) system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the MCU will interface with the sensors and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the MCU (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
+			When choosing an MCU for an internet of things (IoT) system it is important to consider a number of factors. These include the MCU's power consumption, number and availability of I/O ports, how the MCU will interface with the sensors and how the sensor modules will communicate with one another. Additional considerations are the ease of use of the MCU as well as its the size and expense.
 			
-			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing to their small size and reasonable price, the Arduino Nano V3 and Arduino Pro Mini development boards are considered. Arduino devices are well documented with a wide array of libraries, provided through extensive community support, which support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation. Greater power consumption in the Pro Mini is due to an inefficient on-board power regulator integrated circuit (IC).
+			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing to their small size and reasonable price, the \textit{Arduino Nano V3} and \textit{Arduino Pro Mini} development boards are considered. Arduino devices are well documented with a wide array of libraries, provided through extensive community support, which support a range of inexpensive sensor and communication modules. The \textit{Nano} is advantageous over the \textit{Pro Mini} due to its ease of programming, greater availability and lower current draw during normal operation. Greater power consumption in the \textit{Pro Mini} occurs due to an inefficient on-board power regulator integrated circuit (IC).
 
 			An alternative to the Arduino platform is the ESP8266-based development board range. 
 			These boards are designed to cater for low consumption requirements, such as the bare-bones ESP8266 MCU, through to intensive processing requirements, such as the dual core ESP32 MCU. The development boards come pre-built with a \mbox{Wi-Fi} module, among other communication modules, which negates the need for additional communication hardware~\cite{esp12e}.
@@ -83,7 +83,7 @@
 
 			The method of communication between the sensor nodes is a key design consideration as many options are available, each with their own benefits and trade-offs. A range of communication modules exist which are compatible with most common MCUs. These include Wi-Fi, RF, Bluetooth and NFC communication standards. The chosen mode of communication should be robust and reliable as to prevent data loss during transmission. Furthermore, the communication modules should be able to endure a range of outdoor weather conditions as well as obstructions which may exist between two modules.
 
-			The solution should be designed to cater for a system that can be easily and efficiently scaled. This requires the abundant availability of channels within the chosen communication scheme to prevent bandwidth throttling within the sensor network. It is pivotal that an power efficient communication scheme is utilised. Power consumption is proportional to transmission range, and a communication module with variable power modes would be ideal for a scalable and power efficient solution. Enabling line of sight between nodes would require less power as transmission does not need to occur through any obstacles.
+			The solution should be designed to cater for a system that can be easily and efficiently scaled. This requires the abundant availability of channels within the chosen communication scheme to prevent bandwidth throttling within the sensor network. It is pivotal that a power efficient communication scheme is utilised. Power consumption is proportional to transmission range, and a communication module with variable power modes would be ideal for a scalable and power efficient solution. Enabling line of sight between nodes would require less power as transmission does not need to occur through any obstacles.
 			
 		\subsubsection{Power Supply} $   $
 			
@@ -91,15 +91,17 @@
 
 			A range of rechargeable batteries exist which include lithium ion (Li-ion), lithium polymer (Li-Po) and nickel metal hydride (Ni-Mh) options. Li-ion batteries generally offer high capacity in 3.7~V multiples but are known to be quite dangerous when exposed to high temperature ranges~\cite{li-ion}. Li-Po batteries offer a large range of capacities in 3.7~V multiples but the price increases exponentially as capacity increases~\cite{li-po}. Ni-Mh batteries are versatile in offering a large range of capacities as well as a range of voltages~\cite{ni-mh}.
 
-			The chosen supply will then need to be regulated to ensure stable operation of the sensor nodes, as any fluctuation in supply may damage or prevent the sensor nodes from functioning correctly. To ensure the supplied voltage is at an expected level, the use of a boost converter could be utilised to step up the default supply voltage of the batteries.
+			The chosen supply will need to be regulated to ensure stable operation of the sensor nodes, as any fluctuation in supply may damage or prevent the sensor nodes from functioning correctly. To ensure the supplied voltage is at an expected level, the use of a boost converter could be utilised to step up the default supply voltage of the batteries.
 	
 	\subsection{Communication Technologies}
 	
-		A variety of application-appropriate communication technologies are available. These are discussed in the sections that follow.
+		The Industrial, Scientific and Medical (ISM) band refers to a group of radio bands that are unlicensed and internationally reserved for the use of RF transmissions. Any communication operating within the ISM band should be tolerant of interference from other ISM equipment. There has been a surge in low-power, short-range communication platforms utilising the ISM band such as Bluetooth, \mbox{Wi-Fi}, NFC and mobile networks~\cite{ism}. Thus a large variety of communication methods are available offering a range of power consumptions, transmission ranges and data rates.
+	
+		A variety of application-appropriate communication technologies are available to communicate between sensor nodes. These are discussed in the sections that follow.
 		
 		\subsubsection{Wi-Fi} $   $
 		
-			This communication scheme is well known and easily accessible for use within the IoT market. It's range will vary depending on a number of factors, including the specific IEEE 802.11 protocol which the module is utilising, the strength of the module's transmitter, and radio interference from the surrounding environment~\cite{802.11}. Low energy consumption modules require between 14~dBm (25~mW) to 19~dBm (79~mW) for typical transmission with a data rate of 72~Mbps~\cite{esp12e}. At maximum transmission power in an open environment, a maximum transmission distance of approximately 100~m is obtained~\cite{esp12e}. The ESP8266 \mbox{Wi-Fi} module allows four simultaneous client connections with unidirectional communication~\cite{esp12e}.
+			This communication scheme is well known and easily accessible for use within the IoT market. It's range will vary depending on a number of factors, including the specific IEEE 802.11 protocol which the module is utilising, the strength of the module's transmitter, and radio interference from the surrounding environment~\cite{802.11}. Low energy consumption modules require between 14~dBm (25~mW) to 19~dBm (79~mW) for typical transmission with a data rate of 72~Mbps~\cite{esp12e}. At maximum transmission power in an open environment, a maximum transmission distance of approximately 100~m is achieved~\cite{esp12e}. The ESP8266 \mbox{Wi-Fi} module allows four simultaneous client connections with unidirectional communication~\cite{esp12e}.
 
 		\subsubsection{Bluetooth} $   $
 		
@@ -109,10 +111,10 @@
 		
 			A range of RF-based transceivers exist which utilise different ISM bands. The NRF24 refers to a protocol used by Nordic Semiconductors which utilises the 2.4~GHz ISM band for RF communication~\cite{nrf24}. Nordic has produced a range of NRF24 based transceivers which have become prominent within the IoT market due to their low cost and adjustable power consumption. The nRF24L01+ transceiver, for example, offers a maximum transmission distance of approximately 100~m with a data rate of 0.25~Mbps and a transmission power requirement of 0~dBm (1~mW)~\cite{nrf24}. Furthermore, the data rate can be configured up to 2~Mbps and transmission power modes can be selected ranging down to -18~dBm (16~$\mu$W)~\cite{nrf24}. These transceivers facilitate 125 simultaneous connections with bidirectional communication~\cite{nrf24}.
 			
-			An alternative is the RFM69 transceiver, which offers similar operating characteristics to the NRF24-based transceivers but operates in the 433/868/915~Mhz ISM bands and supports up to 255 simultaneous connections~\cite{rfm69}. Naturally, the RFM69 transceiver exhibits marginally higher power requirements to sustain these capabilities and is higher priced than the NRF24-based transceivers~\cite{rfm69}.
+			An alternative is the RFM69 transceiver, which offers similar operating characteristics to the NRF24-based transceivers but operates in the 433/868/915~Mhz ISM bands and supports up to 255 simultaneous connections~\cite{rfm69}. Naturally, the RFM69 transceiver exhibits marginally higher power requirements to sustain these capabilities and is more expensive than the NRF24-based transceivers~\cite{rfm69}.
 	
 	\subsection{Deployment Methodologies}
-		The parking system is to be deployed in the \textit{3rd, 4th and Postgraduate} parking lot near the Chamber of Mines building, located on West Campus of Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. \figref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
+		The parking system is to be deployed in the \textit{3rd, 4th and Postgraduate} parking lot near the Flower Hall building, located on West Campus of Wits University. The designed system covers 72 parking spaces, with four sensors being monitored by each MCU. As such, 18 hardware modules need to be packaged and deployed. \figref{fig:deployment} shows the planned deployment layout. Considerations have been made for the module rigidity, resistance to environmental conditions, security and positioning.
 		
 		\begin{figure}
 			\centering
@@ -136,13 +138,15 @@
 	
 	\subsection{Data Management}
 	
-		The optimised collection and processing of sensor data is required to provide the relevant parking bay information to users. These components are described as in the sections that follow.
+		Optimised collection and processing of sensor data is required to provide the relevant parking bay information to users. These components are described as in the sections that follow.
 		
 		\subsubsection{Mesh Network} $   $
 		
 			The concept of a mesh network relates to a network topology in which infrastructure nodes, being the sensor nodes, are connected in a range of configurations to allow for the efficient routing of data between the nodes within the network~\cite{mesh}. In this specific scenario, the goal relates to implementing a network topology whereby all sensor data is successfully transmitted to the gateway node within the network. Furthermore, the mesh network should be designed in a way that facilitates the ability to enable self-configuration of the nodes within the topology. This allows for dynamic distribution of workloads, which is important in the scenario where a node may happen to fail~\cite{mesh}. This results in improved fault-tolerance and minimised system maintenance. The major considerations of the topology design in the context of this project are node transmission distance and node power consumption. Two topologies offer varying combinations of these factors.
 			
-			\figref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a large total number of transmissions per round of data gathering. \figref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per round of data gathering.
+			\figref{fig:single} illustrates a topology whereby a node will always transmit to its adjacent node until the gateway is reached. This results in a topology which yields a low transmission distance requirement but a high power requirement due to the amount of time which nodes must be powered as well as a large total number of transmissions per round of data gathering. 
+			
+			\figref{fig:segment} illustrates a topology whereby nodes are bound to segments and within each segment all nodes in a row will transmit to a single node. The receiving nodes will then transmit to the adjacent segment and the receiving node will transmit to the gateway node via the closest row node. This results in a topology which yields a longer transmission distance requirement but a lower power requirement due to the reduced time which nodes must be powered as well as a lower total number of transmissions for per round of data gathering.
 			
 			\begin{figure}
 				\centering
@@ -162,22 +166,22 @@
 				\label{fig:segment}
 			\end{figure}
 	
-		\subsubsection{Data Upload} $   $
+		\subsubsection{Data Upload} $   $ \label{sec:data_upload}
 		
-			The Industrial, Scientific and Medical (ISM) band refers to a group of radio bands that are unlicensed and internationally reserved for the use of RF transmissions. Any communication operating within the ISM band should be tolerant of interference from other ISM equipment. There has been a surge in low-power, short-range communication platforms utilising the ISM band such as Bluetooth, \mbox{Wi-Fi}, NFC and mobile networks~\cite{ism}. Thus a large variety of communication methods are available offering a range of power consumptions, transmission ranges and data rates. The following communication methods are considered in uploading sensor data to the utilised data platform:
+			The following communication methods are considered in uploading sensor data to the utilised data platform.
 			
 				\textbf{GSM/GPRS:}~~
 				Global System for Mobile (GSM) communication, also commonly referred to as 2G, due to being a second-generation cellular network provides support for voice calls, Simple Message System (SMS) and data communication via General Packet Radio Service (GPRS). GPRS is a packet switching technology which can provide idealised data rates between 0.056~Mbps to 0.114~Mbps~\cite{gprs}. To utilise GPRS for data communication, an Access Point Name (APN) and username/passward pair is required from a network operator~\cite{gprs}.
 				
-				GSM modules are commercially available which are compatible with most major development boards. These modules require a Subscriber Identification Module (SIM) which is an integrated circuit with the purpose of securely storing the International Mobile Subscriber Identity (IMSI) number with its corresponding authentication key~\cite{imsi}. These are used to identify and authenticate subscribers on the mobile network. Such an example of a GSM module is the common Quectel M10 module which is a quad-band GSM/GPRS modem requiring a supply of just 3.4~V~\cite{m10}.
+				GSM modules are commercially available and are compatible with most major development boards. These modules require a Subscriber Identification Module (SIM) which is an integrated circuit with the purpose of securely storing the International Mobile Subscriber Identity (IMSI) number with its corresponding authentication key~\cite{imsi}. These are used to identify and authenticate subscribers on the mobile network. Such an example of a GSM module is the common Quectel M10 module which is a quad-band GSM/GPRS modem requiring a supply of just 3.4~V~\cite{m10}.
 
 				\textbf{Wits Wi-Fi:}~~
 				The University of the Witwatersrand (Wits) offers a high speed network, offering local and international data rates of 10~Gbps and 589~Mbps respectively~\cite{wits-speed}. Due to the constant need for connection on the main campus, the network is extremely reliable with minimal down-time.
 				
-				The use of a development board such as the ESP12-E which features a built in Wi-Fi module could easily be used as a gateway node for sensor network which could periodically collect all respective sensor data and thereafter connect to the Wi-Fi network provided by Wits to upload the sensor data to the utilised data platform~\cite{esp12e}.
+				The use of a development board such as the ESP12-E, which features a built in Wi-Fi module, could easily be used as a gateway node for the sensor network. This module could periodically collect all respective sensor data and thereafter connect to the Wi-Fi network provided by Wits to upload the sensor data to the chosen data platform~\cite{esp12e}.
 			
 				\textbf{4G/LTE:}~~
-				This is the fourth generation of broadband cellular network technology, succeeding 3G. This generation places emphasis on data rates. This is demonstrated in modules such as the Quectel EC25 Long-Term Evolution (LTE) category 4 module which offers download and upload data rates of up to 150~mbps and 50~mbps respectively, requiring a supply of just 5~V~\cite{ec25}. This caters for solutions where large amounts of data needs to be transferred continuously.
+				This is the fourth generation of broadband cellular network technology, succeeding 3G. This generation places emphasis on data rates. This is demonstrated in modules such as the Quectel EC25 Long-Term Evolution (LTE) category 4 module which offers download and upload data rates of up to 150~mbps and 50~mbps respectively, requiring a supply of  5~V~\cite{ec25}. This caters for solutions where large amounts of data needs to be transferred continuously.
 
 		\subsubsection{Data Platform} $   $
 		
