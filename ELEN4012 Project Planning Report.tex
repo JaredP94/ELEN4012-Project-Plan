@@ -71,18 +71,17 @@
 	The purpose of this section is to demonstrate techniques to identify and communicate parking bay availability. This process includes data acquisition and processing using a sensor module, the deployment of the sensor module, wireless data communication, data management and data presentation. For a minimum viable product, each sensor module must consist of a sensor, microcontroller (MCU), communication module and power supply.
 
 	\subsection{Hardware Choices} 
-	% not sure if this section is too necessary - kinda just bullshitting, could be done concisely elsewhere
+	
+		The available and preferred hardware options for the sensor module are considered in the sections that follow.
 	
 		\subsubsection{Microcontroller} $   $
 		
-			When choosing an MCU for an internet of things (IoT) system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the module will interface with the sensors and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the module (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
+			When choosing an MCU for an internet of things (IoT) system it is important to consider the MCU's power consumption, number and availability of I/O ports, how the MCU will interface with the sensors and how the sensor modules will communicate wirelessly with one another. Additional considerations are the ease of use of the MCU (how easy it is to interface with the hardware, ease of programming) and the size and expense of the MCU.
 			
-			% THIS IS AWFUL
-			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing to their small size and reasonable price, the Arduino Nano V3 and Arduino Pro Mini were considered. Arduino devices are well documented with a wide array of libraries, provided through extensive community support, which support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation. Greater power consumption in the Pro Mini is due to an inefficient on-board power regulator integrated circuit (IC).
+			A popular, versatile and relatively inexpensive MCU platform is the Arduino Platform. Owing to their small size and reasonable price, the Arduino Nano V3 and Arduino Pro Mini development boards are considered. Arduino devices are well documented with a wide array of libraries, provided through extensive community support, which support a range of inexpensive sensor and communication modules. The Nano is advantageous over the Pro Mini due to its ease of programming, greater availability and lower current draw during normal operation. Greater power consumption in the Pro Mini is due to an inefficient on-board power regulator integrated circuit (IC).
 
-			%ESP board - stuff. NEEDS HELP
-			An alternative to the Arduino platform is the ESP8266-based development board range. %A range of development boards based on the aforementioned microprocessor are commercially available. 
-			These boards are designed to cater for low consumption requirements, such as the bare-bones ESP8266 MCU, through to intensive processing requirements, such as the dual core ESP32 MCU. The development boards come pre-built with a \mbox{Wi-Fi} module, among other communication modules, which negates the requirements of additional communication hardware~\cite{esp12e}.
+			An alternative to the Arduino platform is the ESP8266-based development board range. 
+			These boards are designed to cater for low consumption requirements, such as the bare-bones ESP8266 MCU, through to intensive processing requirements, such as the dual core ESP32 MCU. The development boards come pre-built with a \mbox{Wi-Fi} module, among other communication modules, which negates the need for additional communication hardware~\cite{esp12e}.
 			
 		\subsubsection{Sensor} $   $
 			
@@ -97,9 +96,6 @@
 			The solution should be designed to cater for a system that can be easily and efficiently scaled. This requires the abundant availability of channels within the chosen communication scheme to prevent bandwidth throttling within the sensor network. It is pivotal that an power efficient communication scheme is utilised. Power consumption is proportional to transmission range, and a communication module with variable power modes would be ideal for a scalable and power efficient solution. Enabling line of sight between nodes would require less power as transmission does not need to occur through any obstacles.
 			
 		\subsubsection{Power Supply} $   $
-			%Consider using a regulated sousrce such as a power bank, must be able to supply around 200 mA. Power - MCU, sensors, comm module. Power bank - cheap, readily available, charging and discharging circuitry problem presented when auto-off is enabled. Safety feature for when too little current is drawn. 
-			%Source must be sustainable, want unit to have a long life, batteries must last long / be recharged / both.
-			%NiMh batteries are cheap, rechargable, small size 
 			
 			The sensor network should be portable and self-sufficient, requiring a power scheme that is independent. The sensor network requires supply modules which are well regulated and offer large capacity. Additionally, the modules should be renewable and affordable. Rechargeable batteries cater for this exact purpose.
 
@@ -108,6 +104,9 @@
 			The chosen supply will then need to be regulated to ensure stable operation of the sensor nodes, as any fluctuation in supply may damage or prevent the sensor nodes from functioning correctly. To ensure the supplied voltage is at an expected level, the use of a boost converter could be utilised to step up the default supply voltage of the batteries.
 	
 	\subsection{Communication Technologies}
+	
+		A variety of application-appropriate communication technologies are available. These are discussed in the sections that follow.
+		
 		\subsubsection{Wi-Fi} $   $
 		
 			This communication scheme is well known and easily accessible for use within the IoT market. It's range will vary depending on a number of factors, including the specific IEEE 802.11 protocol which the module is utilising, the strength of the module's transmitter, and radio interference from the surrounding environment~\cite{802.11}. Low energy consumption modules require between 14~dBm (25~mW) to 19~dBm (79~mW) for typical transmission with a data rate of 72~Mbps~\cite{esp12e}. At maximum transmission power in an open environment, a maximum transmission distance of approximately 100~m is obtained~\cite{esp12e}. The ESP8266 \mbox{Wi-Fi} module allows four simultaneous client connections with unidirectional communication~\cite{esp12e}.
@@ -128,15 +127,14 @@
 		\begin{figure}
 			\centering
 			\includegraphics[width=1\columnwidth]{media/deploymentSite.png}
-			\caption{Smart Parking deployment site (Google Maps Satellite View) and Module Placement Map}
+			\caption{Smart Parking deployment site (Google Maps satellite view) and module placement map}
 			\raggedright
 			\label{fig:deployment}
 		\end{figure}
 	
-		%\subsubsection{Rigidity}
-		When deployed, the hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive water runoff, but also to provide the ultrasonic sensors with the best viewing angle; ensuring that all shapes and sizes of vehicles are detected. The use of an ultrasonic sensor provides challenges regarding waterproofing, as a result of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
+		When deployed, the hardware should be raised from ground level, not only to prevent the circuitry from being damaged by excessive water runoff, but also to provide the ultrasonic sensors with the best viewing angle; ensuring that all shapes and sizes of vehicles can be detected. The use of an ultrasonic sensor provides challenges regarding waterproofing, as a result of ultrasonic waves being impermeable to almost all materials. As such, there cannot be any barrier between the sensors and the cars being detected, requiring a runoff system that will keep this circuitry dry. 
 		
-		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. In an attempt to keep costs to a minimum, a PVC stand is proposed that will be rigid, stable and provide the right topology to detect vehicles at average bumper height. A top and isometric view of the proposed stand is provided in \figref{fig:stand}. As an alternative, a traffic cone could be used to house the system, if an inexpensive and rigid option can be sourced.
+		Raising the hardware requires that the sensor nodes are resilient to strong winds, and should not break if they are bumped by vehicles driving into or between parking spaces. In an attempt to keep costs to a minimum, a PVC stand is proposed that will be rigid, stable and provide the right topology to detect vehicles at average bumper height. A top and isometric view of the proposed stand is provided in \figref{fig:stand}. Considerations must be made for the security of the modules once they are deployed.
 		
 		\begin{figure}
 			\centering
@@ -173,7 +171,7 @@
 	
 		\subsubsection{Data Upload} $   $
 		
-			The Industrial, Scientific and Medical (ISM) band refers to a group of radio bands that are unlicensed and internationally reserved for the use of RF transmissions. Any communication operating within the ISM band should be tolerant of interference from other ISM equipment. There has been a surge in low-power, short-range communication platforms utilising the ISM band such as bluetooth, \mbox{Wi-Fi}, NFC and mobile networks~\cite{ism}. Thus a large variety of communication methods are available offering a range of power consumptions, transmission ranges and data rates. The following communication methods are considered in uploading sensor data to the utilised data platform:
+			The Industrial, Scientific and Medical (ISM) band refers to a group of radio bands that are unlicensed and internationally reserved for the use of RF transmissions. Any communication operating within the ISM band should be tolerant of interference from other ISM equipment. There has been a surge in low-power, short-range communication platforms utilising the ISM band such as Bluetooth, \mbox{Wi-Fi}, NFC and mobile networks~\cite{ism}. Thus a large variety of communication methods are available offering a range of power consumptions, transmission ranges and data rates. The following communication methods are considered in uploading sensor data to the utilised data platform:
 			
 				\textbf{GSM/GPRS:}~~
 				Global System for Mobile (GSM) communication, also commonly referred to as 2G, due to being a second-generation cellular network provides support for voice calls, Simple Message System (SMS) and data communication via General Packet Radio Service (GPRS). GPRS is a packet switching technology which can provide idealised data rates between 0.056~Mbps to 0.114~Mbps~\cite{gprs}. To utilise GPRS for data communication, an Access Point Name (APN) and username/passward pair is required from a network operator~\cite{gprs}.
@@ -227,12 +225,11 @@
 	\subsection{Hardware Choices} \label{hardware_choices}
 	%https://www.electronics-tutorials.ws/transistor/tran_4.html - may be useful
 	
-		% ref to circuit disgram in this section
 		For the sensor nodes a combination of hardware choices have been made. The chosen MCU, an Arduino Nano V3, is powered by two rechargeable AA 1,2~V 3800~mAh \mbox{Ni-Mh} batteries in series, boosted to 5~V using a small boost (step-up) converter circuit module. The 5~V supply rail is also responsible for powering the four HCSR04 Ultrasonic Sensors attached to each module. 
 		
-		The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a MOSFET transistor as a switch due to it's low voltage drop) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module before a recharge is required. 
+		The MCU will be responsible not only for deciding when and for how long the sensors should be powered (using a MOSFET transistor as a switch due to it's low voltage drop) but also to trigger their ultrasonic pulse for distance detection via the return echo signal. This will be achieved through the software configuration in an attempt to reduce power consumption and in turn extend the life of each module before a recharge is required.
 		
-		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3~V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above. The proposed circuit design is illustrated in \figref{fig:node-circuit}.
+		The final component of each sensor node is the communication module, the NRF24L01+ transceiver. This module, powered by the 3.3~V rail of the Arduino, transmits the sensor data over the mesh network to the access point, where all sensor data is combined and transmitted to the cloud via ??SigFox. The central node/access point consists of this SigFox module interfaced by an Arduino Uno board, powered similarly to that of the Nano modules mentioned above. The proposed circuit design is illustrated in \figref{fig:node-circuit}.??
 
 		\begin{figure*}[h]
 			\centering
@@ -244,20 +241,21 @@
 	
 	\subsection{Communication Technologies}
 		The NRF24L01+ transceiver makes use of NRF24 RF technology to transmit data in the free 2.4GHz ISM band. Each transceiver is capable of using 125 different channels in this band~\cite{howToMech_NRF24L01Tutorial}. The module can operate at a range of baud rates, where lower transfer rates increase its range. The achievable range is high but can be decreased with a decrease in transmission amplification power. The modules operate best in open air. To achieve this the devices should be configured such that data is transferred through as few obstacles as possible. 
-		
-		%SigFox or alternative, maybe use the ESP at the main node to transfer via wits wifi if we can't get enough info through often enough with SigFox
 	
 	\subsection{Deployment Methodologies}
-		The sensor nodes will be deployed in a rigid encasing raised off the ground to average bumper height. The rigid encasing will most likely take form as an inexpensive yet rigid plastic encasing. This encasing will have the required windows for the ultrasonic sensors which will need to be recessed from the window. In turn all circuitry will be raised off the bottom of the encasing and drainage holes will be drilled on the underside to enable drainage if water is to enter via the windows.
+	
+		The sensor nodes will be deployed in a rigid plastic encasing raised off the ground to average bumper height. This container will have the required windows for the ultrasonic sensors which will need to be recessed from the window. In turn all circuitry will be raised off the bottom of the encasing and drainage holes will be drilled into the underside to enable drainage if water is to enter via the windows.
 		
-		To raise the casing off the ground, a PVC stand will be assembled from electrical PVC conduits. The base will be held together by a 4 way PVC round box with four balance legs for stability. A vertical pole will be erected from the center of the stand on which the encased sensor node will be attached.
+		To raise the casing off the ground, a PVC stand will be assembled from electrical PVC conduits. The base will be held together by a 4 way PVC round box with four balance legs for stability. A vertical pole will be erected from the center of the stand on which the encased sensor module will be attached.
 	
 	\subsection{Data Management}
 
-	\subsubsection{Data Platform}
-		ThingSpeak will be utilised as the data platform service. This platform is favourable due to its product offerings under a free tier range. Sensor data uploads can be accommodated every 15 seconds which is more than sufficient for the system requirements. A single data upload channel is available which is sufficient due to the system making use of a single gateway module. The maximum message size of 3~KB is sufficient to store all parking bay information. The estimated message size will be 72~B under the assumption that each parking bay is represented by a boolean data type. Furthermore, the platform provides native support for the ESP-8266 platform which is to be used as the gateway module.
+		\subsubsection{Data Platform}
+		
+			ThingSpeak will be utilised as the data platform service. This platform is favourable due to its product offerings under a free tier range. Sensor data uploads can be accommodated every 15 seconds which is more than sufficient for the system requirements. A single data upload channel is available which is sufficient due to the system making use of a single gateway module. The maximum message size of 3~KB is sufficient to store all parking bay information. The estimated message size will be 72~B under the assumption that each parking bay is represented by a boolean data type. Furthermore, the platform provides native support for the ESP-8266 platform which is to be used as the gateway module.
 
 	\subsection{Data Presentation}
+	
 		The process of translating raw sensor data into useful information occurs within the data presentation element of the designed solution. This will be served through a mobile application which is to be developed on the Android platform. The application will provide users, being students who wish to search for available parking spots, with a graphical user interface (GUI) in which an aerial view of the surveyed parking bays will be presented. An available parking by will be highlighted in green, whilst an occupied parking bay will be highlighted in red.
 
 		The required sensor data will be obtained from the utilised data platform in the form of a RESTful API which will allow the application to obtain the sensor data through HTTP requests. The updated sensor data will be periodically requested by the application to provide regular GUI updates of available parking bays.
@@ -268,7 +266,15 @@
 
 \section{PROJECT MANAGEMENT}
 
-	Management of the project includes the management of work, time-management and scheduling, and the assessment and management of risks that are expected to be encountered throughout the project. The project can be divided into distinct phases in which specific workflow should take place.
+	Management of the project includes the management of work, time-management and scheduling, and the assessment and management of risks that are expected to be encountered throughout the project. The project can be divided into distinct phases in which specific workflow should take place. \figref{fig:timeline} demonstrates the projected project timeline and the phase progression for the project.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\columnwidth]{media/timeline.png}
+		\caption{Projected timeline of the project, including workflow (green) and deadlines (purple)}
+		\raggedright
+		\label{fig:timeline}
+	\end{figure}
 	
 	\subsection{Design Phase}
 		The design phase consists of a series of iterations of ideation, feasibility analysis, refinement and critical analysis. An important part of the design phase is research, most of which has been presented in the early sections of this report. The final design should ideally be complete before the beginning of the project, yet realistically will continue throughout the implementation and testing phases. 
@@ -276,13 +282,13 @@
 		Both the hardware and software components of the design must be considered here, to the point that all possible design implementations are known and the outcomes can be predicted with reasonable accuracy. 
 	
 	\subsection{Implementation Phase}
-		The implementation phase will start once all hardware components have arrived and the design is finalised. Implementation will begin with the assembly of the sensor nodes as well as their programming. Following this the communication within the mesh network will be set up and tested. Once all sensor data is successfully retrieved by the access point, the data will be transmitted, via the SigFox module, to the SigFox cloud. From here a user application will be developed which can retrieve the parking availability data using an available API and presented to the user via an intuitive user interface.
+		The implementation phase will start once all hardware components have been procured and the design is finalised. Implementation will begin with the assembly of the sensor nodes as well as their programming. Following this the communication within the mesh network will be set up and tested. Once all sensor data is successfully retrieved by the access point, the data will be transmitted, via the gateway node, to the ThingSpeak cloud. From here a user application will be developed which can retrieve the parking availability data using an available API and presented to the user via an intuitive user interface.
 	
 	\subsection{Testing Phase}
-		Testing will occur throughout the implementation phase. All individual modules, their collaboration, communications and accuracy will be verified as the system is put together. Once the finalised system is deployed into the parking lot, the system success rate will be tested using a statistical approach. Adjustments to improve the system accuracy will be made and iteratively, a low variance final product will be produced at the end of this phase.
+		Testing will occur throughout the implementation phase. All individual modules, their collaboration, communications and accuracy will be verified as the system is put together. Once the finalised system is deployed into the parking lot, the system success rate will be tested using a statistical approach. Adjustments to improve the system accuracy will be made and, iteratively, a low variance final product will be produced.
 		
 	\subsection{Demonstration Phase}
-		Demonstration is set to take place at Open Day. This phase involves creating posters as well as having the system deployed in the parking lot while the developed application demonstrates the system working in real time at the stand.
+		System demonstration is set to take place at Open Day (28th August 2018), six weeks after the beginning of the implementation phase. Preparation for this phase involves creating posters as well as having the system deployed in the parking lot. On open day, the developed system will be demonstrated in real time via the mobile application at the group's stand.
 	
 	\subsection{Documentation Phase}
 		The final report is to be written and submitted during this phase. Although documentation will take place throughout all of the previous stages, writing the report is the sole focus of this phase.
@@ -293,19 +299,7 @@
 	\subsection{Projected Timeline}
 	% look at project spec and flesh it out
 	% we should probably discuss the real serious timeline like what people will have in Gannt charts somewhere. Seems like a good idea
-	Figure~\ref{fig:timeline} demonstrates the projected project timeline and the phase progression for the project.
 	
-	\begin{figure}
-		\centering
-		\includegraphics[width=1\columnwidth]{media/timeline.png}
-		\caption{Projected timeline of the project, including workflow (green) and deadlines (purple)}
-		\raggedright
-		\label{fig:timeline}
-	\end{figure}
-	
-	
-	\subsection{Risk Assessment}
-	% look at project spec and flesh it out
 
 \section{CONCLUSION}
 
